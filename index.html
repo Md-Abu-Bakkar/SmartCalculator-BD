@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>অ্যাডভান্সড ক্যালকুলেটর | Professional Calculator Suite</title>
+  <style>
+    :root {
+      --primary-color: #4a6bff;
+      --secondary-color: #00c853;
+      --accent-color: #ff3d00;
+      --dark-color: #2d3748;
+      --light-color: #f8f9fa;
+      --gray-color: #e2e8f0;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      --border-radius: 12px;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Roboto', 'Segoe UI', 'Noto Sans Bengali', sans-serif;
+      line-height: 1.6;
+      color: var(--dark-color);
+      background-color: var(--light-color);
+      overflow: hidden;
+      height: 100vh;
+    }
+    
+    .container {
+      max-width: 100%;
+      height: 100vh;
+      margin: 0 auto;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .ad-container {
+      text-align: center;
+      background: white;
+      padding: 5px;
+      width: 100%;
+    }
+    
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    
+    .mobile-calculator-container {
+      background: white;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .calculator-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px;
+      background: linear-gradient(135deg, var(--primary-color), #6a11cb);
+      color: white;
+    }
+    
+    .menu-button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 5px;
+    }
+    
+    .mobile-calculator {
+      width: 100%;
+      max-width: 100%;
+      margin: 0 auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 15px;
+    }
+    
+    .calc-display {
+      background: #f0f2f5;
+      padding: 20px;
+      text-align: right;
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      min-height: 80px;
+      font-weight: 300;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    .calc-buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      flex: 1;
+    }
+    
+    .calc-btn {
+      padding: 18px;
+      font-size: 1.3rem;
+      border: none;
+      border-radius: 8px;
+      background: #e9ecef;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-weight: 500;
+    }
+    
+    .calc-btn:hover {
+      background: #dee2e6;
+    }
+    
+    .calc-btn.operator {
+      background: var(--primary-color);
+      color: white;
+    }
+    
+    .calc-btn.equals {
+      background: var(--secondary-color);
+      color: white;
+    }
+    
+    .calc-btn.clear {
+      background: var(--accent-color);
+      color: white;
+    }
+    
+    .calc-btn.function {
+      background: #adb5bd;
+      color: white;
+      font-size: 1.1rem;
+    }
+    
+    /* Menu Styles */
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 100;
+      display: none;
+    }
+    
+    .menu-content {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 80%;
+      max-width: 300px;
+      background: white;
+      box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      z-index: 101;
+      overflow-y: auto;
+      padding: 20px;
+    }
+    
+    .menu-content.show {
+      transform: translateX(0);
+    }
+    
+    .menu-header {
+      padding: 15px 0;
+      border-bottom: 1px solid #eee;
+      margin-bottom: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .close-menu {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    
+    .menu-section {
+      margin-bottom: 20px;
+    }
+    
+    .menu-section-title {
+      font-size: 1.1rem;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .menu-item {
+      padding: 12px 0;
+      cursor: pointer;
+      border-bottom: 1px solid #f5f5f5;
+      transition: all 0.2s;
+    }
+    
+    .menu-item:hover {
+      color: var(--primary-color);
+      padding-left: 5px;
+    }
+    
+    /* Tool Content Styles */
+    .tool-content {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: white;
+      z-index: 99;
+      overflow-y: auto;
+      padding: 20px;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+    }
+    
+    .tool-content.show {
+      transform: translateX(0);
+    }
+    
+    .tool-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    
+    .back-button {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--primary-color);
+    }
+    
+    .tool-title {
+      font-size: 1.3rem;
+      color: var(--primary-color);
+    }
+    
+    .calculator-card {
+      background: white;
+      border-radius: var(--border-radius);
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
+    }
+    
+    .input-group {
+      margin-bottom: 15px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #555;
+      font-size: 0.95rem;
+    }
+    
+    input, select {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: all 0.3s;
+      background-color: #f9f9f9;
+    }
+    
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(74, 107, 255, 0.2);
+      background-color: white;
+    }
+    
+    button {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 500;
+      width: 100%;
+      transition: background-color 0.3s, transform 0.2s;
+      margin-top: 10px;
+    }
+    
+    button:hover {
+      background-color: #3a5bef;
+      transform: translateY(-2px);
+    }
+    
+    button:active {
+      transform: translateY(0);
+    }
+    
+    .result-container {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #f5f7ff;
+      border-radius: 8px;
+      border-left: 4px solid var(--primary-color);
+    }
+    
+    .result-title {
+      font-weight: 500;
+      color: #555;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+    
+    .result-value {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--secondary-color);
+    }
+    
+    .formula-note {
+      font-size: 0.85rem;
+      color: #666;
+      margin-top: 10px;
+      font-style: italic;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .calc-btn {
+        padding: 15px;
+        font-size: 1.1rem;
+      }
+      
+      .calc-display {
+        font-size: 2rem;
+        min-height: 70px;
+      }
+    }
+    
+    /* Tooltip */
+    .tooltip {
+      position: relative;
+      display: inline-block;
+      margin-left: 8px;
+      cursor: pointer;
+    }
+    
+    .tooltip i {
+      color: var(--primary-color);
+      font-size: 0.9rem;
+    }
+    
+    .tooltip-text {
+      visibility: hidden;
+      width: 200px;
+      background-color: var(--dark-color);
+      color: white;
+      text-align: center;
+      border-radius: 6px;
+      padding: 10px;
+      position: absolute;
+      z-index: 1;
+      bottom: 125%;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      font-size: 0.85rem;
+      font-weight: normal;
+    }
+    
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Top Ad -->
+    <div class="ad-container">
+      <script type="text/javascript">
+        atOptions = {
+          'key' : 'a481763decb23c81da5296aea54b0fd9',
+          'format' : 'iframe',
+          'height' : 50,
+          'width' : 320,
+          'params' : {}
+        };
+      </script>
+      <script type="text/javascript" src="//www.highperformanceformat.com/a481763decb23c81da5296aea54b0fd9/invoke.js"></script>
+    </div>
+    
+    <div class="main-content">
+      <!-- Calculator Header with Menu Button -->
+      <div class="calculator-header">
+        <button class="menu-button" onclick="openMenu()">
+          <i class="fas fa-ellipsis-v"></i>
+        </button>
+        <h2>ক্যালকুলেটর</h2>
+        <div style="width: 50px;"></div> <!-- Spacer for balance -->
+      </div>
+      
+      <!-- Mobile-style Calculator -->
+      <div class="mobile-calculator-container">
+        <div class="mobile-calculator">
+          <div class="calc-display" id="calcDisplay">0</div>
+          <div class="calc-buttons">
+            <button class="calc-btn clear" onclick="clearDisplay()">C</button>
+            <button class="calc-btn function" onclick="appendToDisplay('(')">(</button>
+            <button class="calc-btn function" onclick="appendToDisplay(')')">)</button>
+            <button class="calc-btn operator" onclick="appendToDisplay('/')">/</button>
+            <button class="calc-btn" onclick="appendToDisplay('7')">7</button>
+            <button class="calc-btn" onclick="appendToDisplay('8')">8</button>
+            <button class="calc-btn" onclick="appendToDisplay('9')">9</button>
+            <button class="calc-btn operator" onclick="appendToDisplay('*')">×</button>
+            <button class="calc-btn" onclick="appendToDisplay('4')">4</button>
+            <button class="calc-btn" onclick="appendToDisplay('5')">5</button>
+            <button class="calc-btn" onclick="appendToDisplay('6')">6</button>
+            <button class="calc-btn operator" onclick="appendToDisplay('-')">-</button>
+            <button class="calc-btn" onclick="appendToDisplay('1')">1</button>
+            <button class="calc-btn" onclick="appendToDisplay('2')">2</button>
+            <button class="calc-btn" onclick="appendToDisplay('3')">3</button>
+            <button class="calc-btn operator" onclick="appendToDisplay('+')">+</button>
+            <button class="calc-btn" onclick="appendToDisplay('0')">0</button>
+            <button class="calc-btn" onclick="appendToDisplay('.')">.</button>
+            <button class="calc-btn function" onclick="backspace()">⌫</button>
+            <button class="calc-btn equals" onclick="calculate()">=</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Menu Overlay -->
+    <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
+    
+    <!-- Menu Content -->
+    <div class="menu-content" id="menuContent">
+      <div class="menu-header">
+        <h3>ক্যালকুলেটর টুলস</h3>
+        <button class="close-menu" onclick="closeMenu()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <!-- Construction Calculators -->
+      <div class="menu-section">
+        <div class="menu-section-title">
+          <i class="fas fa-hammer"></i> নির্মাণ ক্যালকুলেটর
+        </div>
+        <div class="menu-item" onclick="openTool('pipe')">রাউন্ড ফ্ল্যাটেনিং</div>
+        <div class="menu-item" onclick="openTool('mm')">গুনিয়া স্কেল মাইক্রোমিটার</div>
+        <div class="menu-item" onclick="openTool('weight')">বস্তার ওজন হিসাব মন - কেজি</div>
+      </div>
+      
+      <!-- Financial Calculators -->
+      <div class="menu-section">
+        <div class="menu-section-title">
+          <i class="fas fa-money-bill-wave"></i> আর্থিক ক্যালকুলেটর
+        </div>
+        <div class="menu-item" onclick="openTool('simple-interest')">সরল সুদ</div>
+        <div class="menu-item" onclick="openTool('compound-interest')">চক্রবৃদ্ধি সুদ</div>
+      </div>
+      
+      <!-- Conversion Calculators -->
+      <div class="menu-section">
+        <div class="menu-section-title">
+          <i class="fas fa-exchange-alt"></i> রূপান্তর ক্যালকুলেটর
+        </div>
+        <div class="menu-item" onclick="openTool('area')">এলাকা রূপান্তর</div>
+        <div class="menu-item" onclick="openTool('length')">দৈর্ঘ্য রূপান্তর</div>
+        <div class="menu-item" onclick="openTool('age')">বয়স ক্যালকুলেটর</div>
+      </div>
+    </div>
+    
+    <!-- Tool Contents -->
+    <!-- Pipe Calculator -->
+    <div id="pipe-tool" class="tool-content">
+      <div class="tool-header">
+        <button class="back-button" onclick="closeTool('pipe')">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <h2 class="tool-title">রাউন্ড ফ্ল্যাটেনিং</h2>
+      </div>
+      
+      <div class="calculator-card">
+        <div class="input-group">
+          <label for="pipeDiameter">
+            একটি গোলাকার বস্তুকে (যেমন পাইপ, রড, তার বা যেকোনো বৃত্তাকার অংশ) যদি সোজা বা সমতল করা হয়, তাহলে তার মোট দৈর্ঘ্য কত হবে বের করুন🚫।):
+            <span class="tooltip">
+              <i class="fas fa-info-circle"></i>
+              <span class="tooltip-text">স্ট্যান্ডার্ড পাইপের ব্যাস ইনপুট করুন, যেমন: 6 ইঞ্চি</span>
+            </span>
+          </label>
+          <input type="number" id="pipeDiameter" placeholder="উদাহরণ: 6" step="0.01">
+        </div>
+        <button onclick="calculatePipe()">হিসাব করুন</button>
+        <div class="result-container">
+          <div class="result-title">ফ্ল্যাট করার পর পরিমাপ:</div>
+          <div class="result-value" id="pipeResult">0 ইঞ্চি</div>
+          <div class="formula-note">circumference</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Millimeter Conversion -->
+    <div id="mm-tool" class="tool-content">
+      <div class="tool-header">
+        <button class="back-button" onclick="closeTool('mm')">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <h2 class="tool-title">গুনিয়া স্কেল মাইক্রোমিটার</h2>
+      </div>
+      
+      <div class="calculator-card">
+        <div class="input-group">
+          <label for="mmInput">ভূমি জরিপের কাজে এটি ব্যবহার করে জমি পরিমাপের সময় লিঙ্ক থেকে ফুটে রূপান্তর করুন। ∆ মাইক্রোমিটার (mum):</label>
+          <input type="number" id="mmInput" placeholder="উদাহরণ: 100" step="0.01" oninput="calculateMM()">
+        </div>
+        <div class="result-container">
+          <div class="result-title">রূপান্তরিত মান:</div>
+          <div class="result-value" id="mmResult">0 Food</div>
+          <div class="formula-note">1 = 12 ইঞ্চি</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Weight Conversion -->
+    <div id="weight-tool" class="tool-content">
+      <div class="tool-header">
+        <button class="back-button" onclick="closeTool('weight')">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <h2 class="tool-title">বস্তার ওজন হিসাব মন - কেজি</h2>
+      </div>
+      
+      <div class="calculator-card">
+        <div class="input-group">
+          <label for="bagWeight">প্রতি বস্তার ধান বা যেকোনো দ্রব্য ওজন হিসাব ⚖️(মন - কেজি):</label>
+          <input type="number" id="bagWeight" placeholder="উদাহরণ: 25" step="0.01" oninput="calculateKG()">
+        </div>
+        <div class="input-group">
+          <label for="bagCount">মোট বস্তা (টি):</label>
+          <input type="number" id="bagCount" placeholder="উদাহরণ: 10" oninput="calculateKG()">
+        </div>
+        <div class="result-container">
+          <div class="result-title">মোট ওজন:</div>
+          <div class="result-value" id="kgResult">0 কেজি</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Simple Interest Calculator -->
+    <div id="simple-interest-tool" class="tool-content">
+      <div class="tool-header">
+        <button class="back-button" onclick="closeTool('simple-interest')">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <h2 class="tool-title">সরল সুদ ক্যালকুলেটর</h2>
+      </div>
+      
+      <div class="calculator-card">
+        <div class="input-group">
+          <label for="principal">মূলধন (টাকা):</label>
+          <input type="number" id="principal" placeholder="উদাহরণ: 10000">
+        </div>
+        <div class="input-group">
+          <label for="rate">সুদের হার (%):</label>
+          <input type="number" id="rate" placeholder="উদাহরণ: 8.5" step="0.01">
+        </div>
+        <div class="input-group">
+          <label for="time">সময় (বছরে):</label>
+          <input type="number" id="time" placeholder="উদাহরণ: 5" step="0.5">
+        </div>
+        <button onclick="calculateInterest()">হিসাব করুন</button>
+        <div class="result-container">
+          <div class="result-title">সুদের পরিমাণ:</div>
+          <div class="result-value" id="interestResult">0 টাকা</div>
+          <div class="formula-note">সূত্র: (মূলধন × হার × সময়) ÷ 100</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Compound Interest Calculator -->
+    <div id="compound-interest-tool" class="tool-content">
+      <div class="tool-header">
+        <button class="back-button" onclick="closeTool('compound-interest')">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <h2 class="tool-title">চক্রবৃদ্ধি সুদ ক্যালকুলেটর</h2>
+      </div>
+      
+      <div class="calculator-card">
+        <div class="input-group">
+          <label for="cPrincipal">মূলধন (টাকা):</label>
+          <input type="number" id="cPrincipal" placeholder="উদাহরণ: 10000">
+        </div>
+        <div class="input-group">
+          <label for="cRate">বার্ষিক সুদের হার (%):</label>
+          <input type="number" id="cRate" placeholder="উদাহরণ: 8.5" step="0.01">
+        </div>
+        <div class="input-group">
+          <label for="cTime">সময় (বছরে):</label>
+          <input type="number" id="cTime" placeholder="উদাহরণ: 5" step="0.5">
+        </div>
+        <div class="input-group">
+          <label for="cCompound">কম্পাউন্ড ফ্রিকোয়েন্সি:</label>
+          <select id="cCompound">
+            <option value="1">বার্ষিক</option>
+            <option value="2">অর্ধ-বার্ষিক</option>
+            <option value="4">ত্রৈমাসিক</option>
+            <option value="12">মাসিক</option>
+          </select>
+        </div>
+        <button onclick="calculateCompoundInterest()">হিসাব করুন</button>
+        <div class="result-container">
+          <div class="result-title">ভবিষ্যৎ মূল্য:</div>
+          <div class="result-value" id="compoundResult">0 টাকা</div>
+          <div class="formula-note">সূত্র: P(1 + r/n)^(nt)</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Area Conversion -->
+    <div id="area-tool" class="tool-content">
+      <div class="tool-header">
+        <button class="back-button" onclick="closeTool('area')">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <h2 class="tool-title">এলাকা রূপান্তর</h2>
+      </div>
+      
+      <div class="calculator-card">
+        <div class="input-group">
+          <label for="areaValue">মান:</label>
+          <input type="number" id="areaValue" placeholder="উদাহরণ: 1" step="0.01">
+        </div>
+        <div class="input-group">
+          <label for="areaFrom">থেকে:</label>
+          <select id="areaFrom">
+            <option value="sqft">বর্গফুট</option>
+            <option value="sqm">বর্গমিটার</option>
+            <option value="acre">একর</option>
+            <option value="hectare">হেক্টর</option>
+            <option value="decimal">ডেসিমাল</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label for="areaTo">প্রতি:</label>
+          <select id="areaTo">
+            <option value="sqm">বর্গমিটার</option>
+            <option value="sqft">বর্গফুট</option>
+            <option value="acre">একর</option>
+            <option value="hectare">হেক্টর</option>
+            <option value="decimal">ডেসিমাল</option>
+          </select>
+        </div>
+        <button onclick="convertArea()">রূপান্তর করুন</button>
+        <div class="result-container">
+          <div class="result-title">ফলাফল:</div>
+          <div class="result-value" id="areaResult">0</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Length Conversion -->
+    <div id="length-tool" class="tool-content">
+      <div class="tool-header">
+        <button class="back-button" onclick="closeTool('length')">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <h2 class="tool-title">দৈর্ঘ্য রূপান্তর</h2>
+      </div>
+      
+      <div class="calculator-card">
+        <div class="input-group">
+          <label for="lengthValue">মান:</label>
+          <input type="number" id="lengthValue" placeholder="উদাহরণ: 1" step="0.01">
+        </div>
+        <div class="input-group">
+          <label for="lengthFrom">থেকে:</label>
+          <select id="lengthFrom">
+            <option value="mm">মিলিমিটার</option>
+            <option value="cm">সেন্টিমিটার</option>
+            <option value="m">মিটার</option>
+            <option value="km">কিলোমিটার</option>
+            <option value="inch">ইঞ্চি</option>
+            <option value="ft">ফুট</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label for="lengthTo">প্রতি:</label>
+          <select id="lengthTo">
+            <option value="cm">সেন্টিমিটার</option>
+            <option value="mm">মিলিমিটার</option>
+            <option value="m">মিটার</option>
+            <option value="km">কিলোমিটার</option>
+            <option value="inch">ইঞ্চি</option>
+            <option value="ft">ফুট</option>
+          </select>
+        </div>
+        <button onclick="convertLength()">রূপান্তর করুন</button>
+        <div class="result-container">
+          <div class="result-title">ফলাফল:</div>
+          <div class="result-value" id="lengthResult">0</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Age Calculator -->
+    <div id="age-tool" class="tool-content">
+      <div class="tool-header">
+        <button class="back-button" onclick="closeTool('age')">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <h2 class="tool-title">বয়স ক্যালকুলেটর</h2>
+      </div>
+      
+      <div class="calculator-card">
+        <div class="input-group">
+          <label for="birthDate">জন্ম তারিখ:</label>
+          <input type="date" id="birthDate" onchange="calculateAge()">
+        </div>
+        <div class="result-container">
+          <div class="result-title">আপনার বয়স:</div>
+          <div class="result-value" id="ageResult">0 বছর</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Menu Functions
+    function openMenu() {
+      document.getElementById('menuOverlay').style.display = 'block';
+      document.getElementById('menuContent').classList.add('show');
+    }
+    
+    function closeMenu() {
+      document.getElementById('menuOverlay').style.display = 'none';
+      document.getElementById('menuContent').classList.remove('show');
+    }
+    
+    // Tool Functions
+    function openTool(toolId) {
+      closeMenu();
+      document.getElementById(toolId + '-tool').classList.add('show');
+    }
+    
+    function closeTool(toolId) {
+      document.getElementById(toolId + '-tool').classList.remove('show');
+    }
+    
+    // Mobile Calculator Functions
+    let currentDisplay = '0';
+    const calcDisplay = document.getElementById('calcDisplay');
+    
+    function updateDisplay() {
+      calcDisplay.textContent = currentDisplay;
+    }
+    
+    function appendToDisplay(value) {
+      if (currentDisplay === '0' && value !== '.') {
+        currentDisplay = value;
+      } else {
+        currentDisplay += value;
+      }
+      updateDisplay();
+    }
+    
+    function clearDisplay() {
+      currentDisplay = '0';
+      updateDisplay();
+    }
+    
+    function backspace() {
+      if (currentDisplay.length === 1) {
+        currentDisplay = '0';
+      } else {
+        currentDisplay = currentDisplay.slice(0, -1);
+      }
+      updateDisplay();
+    }
+    
+    function calculate() {
+      try {
+        // Replace × with * for proper evaluation
+        const expression = currentDisplay.replace(/×/g, '*');
+        currentDisplay = eval(expression).toString();
+        updateDisplay();
+      } catch (error) {
+        currentDisplay = 'Error';
+        updateDisplay();
+        setTimeout(clearDisplay, 1500);
+      }
+    }
+    
+    // Pipe Calculation
+    function calculatePipe() {
+      const diameter = parseFloat(document.getElementById("pipeDiameter").value);
+      if (isNaN(diameter)) {
+        document.getElementById("pipeResult").innerText = "0 ইঞ্চি";
+        return;
+      }
+      
+      const circumference = diameter * Math.PI;
+      const roundedValue = Math.round(circumference * 100) / 100;
+      
+      document.getElementById("pipeResult").innerText = `${roundedValue} ইঞ্চি`;
+    }
+    
+    // Millimeter Conversion (Updated as requested)
+    function calculateMM() {
+      const mm = parseFloat(document.getElementById("mmInput").value);
+      if (isNaN(mm)) {
+        document.getElementById("mmResult").innerText = "0 Unit";
+        return;
+      }
+      
+      // Convert based on 1=12 points system
+      const convertedValue = mm * 0.66;
+      const roundedValue = Math.round(convertedValue * 100) / 100;
+      
+      // Format the decimal part to show as points (12 points = 1)
+      const wholeNumber = Math.floor(roundedValue);
+      const decimalPart = roundedValue - wholeNumber;
+      let points = Math.round(decimalPart * 12);
+      
+      // Handle cases where decimal rounds to 1.0 (12 points)
+      if (points >= 12) {
+        points = 0;
+        wholeNumber += 1;
+      }
+      
+      let resultText;
+      if (points > 0) {
+        resultText = `${wholeNumber} ফুড ${points} ইঞ্চি (${roundedValue.toFixed(2)} Unit)`;
+      } else {
+        resultText = `${wholeNumber} (${roundedValue.toFixed(2)} Unit)`;
+      }
+      
+      document.getElementById("mmResult").innerText = resultText;
+    }
+    
+    // Weight Conversion
+    function calculateKG() {
+      const weight = parseFloat(document.getElementById("bagWeight").value);
+      const count = parseFloat(document.getElementById("bagCount").value);
+      
+      if (isNaN(weight) || isNaN(count)) {
+        document.getElementById("kgResult").innerText = "0 কেজি";
+        return;
+      }
+      
+      const totalKg = weight * count;
+      const mons = Math.floor(totalKg / 40);
+      const remainingKg = (totalKg % 40).toFixed(2);
+      
+      let resultText;
+      if (mons > 0 && remainingKg > 0) {
+        resultText = `${mons} মন ${remainingKg} কেজি (মোট: ${totalKg} কেজি)`;
+      } else if (mons > 0) {
+        resultText = `${mons} মন (মোট: ${totalKg} কেজি)`;
+      } else {
+        resultText = `${totalKg} কেজি`;
+      }
+      
+      document.getElementById("kgResult").innerText = resultText;
+    }
+    
+    // Age Calculator
+    function calculateAge() {
+      const dob = new Date(document.getElementById("birthDate").value);
+      if (isNaN(dob.getTime())) {
+        document.getElementById("ageResult").innerText = "0 বছর";
+        return;
+      }
+      
+      const today = new Date();
+      let age = today.getFullYear() - dob.getFullYear();
+      const monthDiff = today.getMonth() - dob.getMonth();
+      
+      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+        age--;
+      }
+      
+      // Calculate months if less than 1 year
+      let months = 0;
+      if (age === 0) {
+        months = today.getMonth() - dob.getMonth();
+        if (today.getDate() < dob.getDate()) {
+          months--;
+        }
+        if (months < 0) {
+          months += 12;
+        }
+      }
+      
+      let resultText;
+      if (age > 1) {
+        resultText = `${age} বছর`;
+      } else if (age === 1) {
+        resultText = "1 বছর";
+      } else {
+        resultText = `${months} মাস`;
+      }
+      
+      document.getElementById("ageResult").innerText = resultText;
+    }
+    
+    // Simple Interest Calculator
+    function calculateInterest() {
+      const p = parseFloat(document.getElementById("principal").value);
+      const r = parseFloat(document.getElementById("rate").value);
+      const t = parseFloat(document.getElementById("time").value);
+      
+      if (isNaN(p) || isNaN(r) || isNaN(t)) {
+        document.getElementById("interestResult").innerText = "ইনপুট দিন";
+        return;
+      }
+      
+      const interest = (p * r * t) / 100;
+      const total = p + interest;
+      
+      document.getElementById("interestResult").innerText = 
+        `${interest.toFixed(2)} টাকা (মোট: ${total.toFixed(2)} টাকা)`;
+    }
+    
+    // Compound Interest Calculator
+    function calculateCompoundInterest() {
+      const p = parseFloat(document.getElementById("cPrincipal").value);
+      const r = parseFloat(document.getElementById("cRate").value) / 100;
+      const t = parseFloat(document.getElementById("cTime").value);
+      const n = parseInt(document.getElementById("cCompound").value);
+      
+      if (isNaN(p) || isNaN(r) || isNaN(t) || isNaN(n)) {
+        document.getElementById("compoundResult").innerText = "ইনপুট দিন";
+        return;
+      }
+      
+      const amount = p * Math.pow(1 + r/n, n*t);
+      const interest = amount - p;
+      
+      document.getElementById("compoundResult").innerText = 
+        `${amount.toFixed(2)} টাকা (সুদ: ${interest.toFixed(2)} টাকা)`;
+    }
+    
+    // Area Conversion
+    function convertArea() {
+      const value = parseFloat(document.getElementById("areaValue").value);
+      const from = document.getElementById("areaFrom").value;
+      const to = document.getElementById("areaTo").value;
+      
+      if (isNaN(value)) {
+        document.getElementById("areaResult").innerText = "0";
+        return;
+      }
+      
+      // Convert to square meters first
+      let inSqm;
+      switch(from) {
+        case 'sqft':
+          inSqm = value * 0.092903;
+          break;
+        case 'sqm':
+          inSqm = value;
+          break;
+        case 'acre':
+          inSqm = value * 4046.86;
+          break;
+        case 'hectare':
+          inSqm = value * 10000;
+          break;
+        case 'decimal':
+          inSqm = value * 40.4686;
+          break;
+        default:
+          inSqm = value;
+      }
+      
+      // Convert to target unit
+      let result;
+      switch(to) {
+        case 'sqft':
+          result = inSqm / 0.092903;
+          break;
+        case 'sqm':
+          result = inSqm;
+          break;
+        case 'acre':
+          result = inSqm / 4046.86;
+          break;
+        case 'hectare':
+          result = inSqm / 10000;
+          break;
+        case 'decimal':
+          result = inSqm / 40.4686;
+          break;
+        default:
+          result = inSqm;
+      }
+      
+      document.getElementById("areaResult").innerText = result.toFixed(4);
+    }
+    
+    // Length Conversion
+    function convertLength() {
+      const value = parseFloat(document.getElementById("lengthValue").value);
+      const from = document.getElementById("lengthFrom").value;
+      const to = document.getElementById("lengthTo").value;
+      
+      if (isNaN(value)) {
+        document.getElementById("lengthResult").innerText = "0";
+        return;
+      }
+      
+      // Convert to meters first
+      let inMeters;
+      switch(from) {
+        case 'mm':
+          inMeters = value / 1000;
+          break;
+        case 'cm':
+          inMeters = value / 100;
+          break;
+        case 'm':
+          inMeters = value;
+          break;
+        case 'km':
+          inMeters = value * 1000;
+          break;
+        case 'inch':
+          inMeters = value * 0.0254;
+          break;
+        case 'ft':
+          inMeters = value * 0.3048;
+          break;
+        default:
+          inMeters = value;
+      }
+      
+      // Convert to target unit
+      let result;
+      switch(to) {
+        case 'mm':
+          result = inMeters * 1000;
+          break;
+        case 'cm':
+          result = inMeters * 100;
+          break;
+        case 'm':
+          result = inMeters;
+          break;
+        case 'km':
+          result = inMeters / 1000;
+          break;
+        case 'inch':
+          result = inMeters / 0.0254;
+          break;
+        case 'ft':
+          result = inMeters / 0.3048;
+          break;
+        default:
+          result = inMeters;
+      }
+      
+      document.getElementById("lengthResult").innerText = result.toFixed(4);
+    }
+  </script>
+</body>
+</html>
