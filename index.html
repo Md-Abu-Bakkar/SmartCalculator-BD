@@ -752,7 +752,7 @@
       <div class="calculator-card">
         <div class="input-group">
           <label for="pipeDiameter">
-            একটি গোলাকার বস্তুকে (যেমন পাইপ, রড, তার বা যেকোনো বৃত্তাকার অংশ) যদি সোজা বা সমতল করা হয়, তাহলে তার মোট দৈর্ঘ্য কত হবে বের করুন🚫।):
+            একটি গোলাকার বস্তুকে (যেমন পাইপ, রড, তার বা যেকোনো বৃত্তাকার অংশ) যদি সোজা বা সমতল করা হয়, তাহলে তার মোট দৈর্ঘ্য কত হবে বের করুন:
             <span class="tooltip">
               <i class="fas fa-info-circle"></i>
               <span class="tooltip-text">স্ট্যান্ডার্ড পাইপের ব্যাস ইনপুট করুন, যেমন: 6 ইঞ্চি</span>
@@ -764,7 +764,7 @@
         <div class="result-container">
           <div class="result-title">ফ্ল্যাট করার পর পরিমাপ:</div>
           <div class="result-value" id="pipeResult">0 ইঞ্চি</div>
-          <div class="formula-note">circumference</div>
+          <div class="formula-note">পরিধি = π × ব্যাস</div>
         </div>
       </div>
       
@@ -1484,7 +1484,7 @@
       }
     }
     
-    // Pipe Calculation
+    // Pipe Calculation with Suto fractions
     function calculatePipe() {
       const diameter = parseFloat(document.getElementById("pipeDiameter").value);
       if (isNaN(diameter) || diameter <= 0) {
@@ -1496,7 +1496,33 @@
       const circumference = diameter * Math.PI;
       const roundedValue = Math.round(circumference * 100) / 100;
       
-      document.getElementById("pipeResult").innerText = `${roundedValue} ইঞ্চি`;
+      // Convert to suto fractions (1 inch = 8 suto)
+      const wholeInches = Math.floor(roundedValue);
+      const decimalPart = roundedValue - wholeInches;
+      const suto = Math.round(decimalPart * 8);
+      
+      // Suto names in Bengali
+      const sutoNames = {
+        0: "",
+        1: "১ সুতো",
+        2: "২ সুতো",
+        3: "৩ সুতো",
+        4: "৪ সুতো",
+        5: "৫ সুতো",
+        6: "৬ সুতো",
+        7: "৭ সুতো"
+      };
+      
+      let resultText;
+      if (wholeInches > 0 && suto > 0) {
+        resultText = `${wholeInches} ইঞ্চি ${sutoNames[suto]}`;
+      } else if (wholeInches > 0) {
+        resultText = `${wholeInches} ইঞ্চি`;
+      } else {
+        resultText = `${sutoNames[suto]}`;
+      }
+      
+      document.getElementById("pipeResult").innerText = resultText;
     }
     
     // Millimeter Conversion (Updated as requested)
