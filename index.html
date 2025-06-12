@@ -49,24 +49,6 @@
       flex-shrink: 0;
     }
     
-    .ad-container-bottom {
-      text-align: center;
-      background: white;
-      padding: 5px;
-      width: 100%;
-      flex-shrink: 0;
-      margin-top: auto;
-    }
-    
-    .ad-container-wide {
-      text-align: center;
-      background: white;
-      padding: 5px;
-      width: 100%;
-      flex-shrink: 0;
-      display: none; /* Hidden by default, shown on larger screens */
-    }
-    
     .main-content {
       flex: 1;
       display: flex;
@@ -95,17 +77,15 @@
     .header-actions {
       display: flex;
       gap: 10px;
-      align-items: center;
     }
     
     .menu-button {
       background: none;
       border: none;
       color: white;
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       cursor: pointer;
       padding: 5px;
-      margin-right: 10px;
     }
     
     .mobile-calculator {
@@ -501,17 +481,6 @@
       .calculator-header {
         padding: 6px 10px;
       }
-      
-      .menu-button {
-        font-size: 1.3rem;
-        margin-right: 5px;
-      }
-    }
-    
-    @media (min-width: 768px) {
-      .ad-container-wide {
-        display: block;
-      }
     }
     
     /* Tooltip */
@@ -570,27 +539,6 @@
       cursor: pointer;
       padding: 5px;
     }
-    
-    /* Input focus for tools */
-    .tool-content input:focus,
-    .tool-content select:focus {
-      outline: none;
-      border-color: var(--primary-color);
-      box-shadow: 0 0 0 3px rgba(74, 107, 255, 0.2);
-      background-color: white;
-    }
-    
-    body.dark-mode .tool-content input,
-    body.dark-mode .tool-content select {
-      background-color: #2d3748;
-      color: white;
-      border-color: #4a5568;
-    }
-    
-    body.dark-mode .tool-content input:focus,
-    body.dark-mode .tool-content select:focus {
-      background-color: #2d3748;
-    }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -616,7 +564,7 @@
       <!-- Calculator Header with Menu Button -->
       <div class="calculator-header">
         <button class="menu-button" onclick="openMenu()">
-          <i class="fas fa-bars"></i>
+          <i class="fas fa-ellipsis-v"></i>
         </button>
         <h2>SmartCalculator BD</h2>
         <div class="header-actions">
@@ -637,7 +585,7 @@
             <button class="calc-btn clear" onclick="clearDisplay()">C</button>
             <button class="calc-btn function" onclick="appendToDisplay('(')">(</button>
             <button class="calc-btn function" onclick="appendToDisplay(')')">)</button>
-            <button class="calc-btn operator" onclick="appendToDisplay('/')">/</button>
+            <button class="calc-btn operator" onclick="appendToDisplay('/')">÷</button>
             <button class="calc-btn" onclick="appendToDisplay('7')">7</button>
             <button class="calc-btn" onclick="appendToDisplay('8')">8</button>
             <button class="calc-btn" onclick="appendToDisplay('9')">9</button>
@@ -716,32 +664,6 @@
     <!-- Tool Contents -->
     <!-- Pipe Calculator -->
     <div id="pipe-tool" class="tool-content">
-      <div class="ad-container">
-        <script type="text/javascript">
-          atOptions = {
-            'key' : 'a481763decb23c81da5296aea54b0fd9',
-            'format' : 'iframe',
-            'height' : 50,
-            'width' : 320,
-            'params' : {}
-          };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/a481763decb23c81da5296aea54b0fd9/invoke.js"></script>
-      </div>
-      
-      <div class="ad-container-wide">
-        <script type="text/javascript">
-          atOptions = {
-            'key' : 'c949739cfbc90099b78fd03e56e0c06f',
-            'format' : 'iframe',
-            'height' : 90,
-            'width' : 728,
-            'params' : {}
-          };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/c949739cfbc90099b78fd03e56e0c06f/invoke.js"></script>
-      </div>
-      
       <div class="tool-header">
         <button class="back-button" onclick="closeTool('pipe')">
           <i class="fas fa-arrow-left"></i>
@@ -752,7 +674,7 @@
       <div class="calculator-card">
         <div class="input-group">
           <label for="pipeDiameter">
-            একটি গোলাকার বস্তুকে (যেমন পাইপ, রড, তার বা যেকোনো বৃত্তাকার অংশ) যদি সোজা বা সমতল করা হয়, তাহলে তার মোট দৈর্ঘ্য কত হবে বের করুন:
+            একটি গোলাকার বস্তুকে (যেমন পাইপ, রড, তার বা যেকোনো বৃত্তাকার অংশ) যদি সোজা বা সমতল করা হয়, তাহলে তার মোট দৈর্ঘ্য কত হবে বের করুন🚫।):
             <span class="tooltip">
               <i class="fas fa-info-circle"></i>
               <span class="tooltip-text">স্ট্যান্ডার্ড পাইপের ব্যাস ইনপুট করুন, যেমন: 6 ইঞ্চি</span>
@@ -764,52 +686,13 @@
         <div class="result-container">
           <div class="result-title">ফ্ল্যাট করার পর পরিমাপ:</div>
           <div class="result-value" id="pipeResult">0 ইঞ্চি</div>
-          <div class="formula-note">পরিধি = π × ব্যাস</div>
+          <div class="formula-note">circumference</div>
         </div>
-      </div>
-      
-      <div class="ad-container-bottom">
-        <script type="text/javascript">
-          atOptions = {
-            'key' : 'dafe8afc0b0266d5b95a198608249118',
-            'format' : 'iframe',
-            'height' : 60,
-            'width' : 468,
-            'params' : {}
-          };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/dafe8afc0b0266d5b95a198608249118/invoke.js"></script>
       </div>
     </div>
     
     <!-- Millimeter Conversion -->
     <div id="mm-tool" class="tool-content">
-      <div class="ad-container">
-        <script type="text/javascript">
-          atOptions = {
-            'key' : 'a481763decb23c81da5296aea54b0fd9',
-            'format' : 'iframe',
-            'height' : 50,
-            'width' : 320,
-            'params' : {}
-          };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/a481763decb23c81da5296aea54b0fd9/invoke.js"></script>
-      </div>
-      
-      <div class="ad-container-wide">
-        <script type="text/javascript">
-          atOptions = {
-            'key' : 'c949739cfbc90099b78fd03e56e0c06f',
-            'format' : 'iframe',
-            'height' : 90,
-            'width' : 728,
-            'params' : {}
-          };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/c949739cfbc90099b78fd03e56e0c06f/invoke.js"></script>
-      </div>
-      
       <div class="tool-header">
         <button class="back-button" onclick="closeTool('mm')">
           <i class="fas fa-arrow-left"></i>
@@ -828,49 +711,10 @@
           <div class="formula-note">1 = 12 ইঞ্চি</div>
         </div>
       </div>
-      
-      <div class="ad-container-bottom">
-        <script type="text/javascript">
-          atOptions = {
-            'key' : 'dafe8afc0b0266d5b95a198608249118',
-            'format' : 'iframe',
-            'height' : 60,
-            'width' : 468,
-            'params' : {}
-          };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/dafe8afc0b0266d5b95a198608249118/invoke.js"></script>
-      </div>
     </div>
     
     <!-- Weight Conversion -->
     <div id="weight-tool" class="tool-content">
-      <div class="ad-container">
-        <script type="text/javascript">
-          atOptions = {
-            'key' : 'a481763decb23c81da5296aea54b0fd9',
-            'format' : 'iframe',
-            'height' : 50,
-            'width' : 320,
-            'params' : {}
-          };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/a481763decb23c81da5296aea54b0fd9/invoke.js"></script>
-      </div>
-      
-      <div class="ad-container-wide">
-        <script type="text/javascript">
-          atOptions = {
-            'key' : 'c949739cfbc90099b78fd03e56e0c06f',
-            'format' : 'iframe',
-            'height' : 90,
-            'width' : 728,
-            'params' : {}
-          };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/c949739cfbc90099b78fd03e56e0c06f/invoke.js"></script>
-      </div>
-      
       <div class="tool-header">
         <button class="back-button" onclick="closeTool('weight')">
           <i class="fas fa-arrow-left"></i>
@@ -892,49 +736,10 @@
           <div class="result-value" id="kgResult">0 কেজি</div>
         </div>
       </div>
-      
-      <div class="ad-container-bottom">
-        <script type="text/javascript">
-          atOptions = {
-            'key' : 'dafe8afc0b0266d5b95a198608249118',
-            'format' : 'iframe',
-            'height' : 60,
-            'width' : 468,
-            'params' : {}
-          };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/dafe8afc0b0266d5b95a198608249118/invoke.js"></script>
-      </div>
     </div>
     
     <!-- Simple Interest Calculator -->
     <div id="simple-interest-tool" class="tool-content">
-      <div class="ad-container">
-        <script type="text/javascript">
-          atOptions = {
-            'key' : 'a481763decb23c81da5296aea54b0fd9',
-            'format' : 'iframe',
-            'height' : 50,
-            'width' : 320,
-            'params' : {}
-          };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/a481763decb23c81da5296aea54b0fd9/invoke.js"></script>
-      </div>
-      
-      <div class="ad-container-wide">
-        <script type="text/javascript">
-          atOptions = {
-            'key' : 'c949739cfbc90099b78fd03e56e0c06f',
-            'format' : 'iframe',
-            'height' : 90,
-            'width' : 728,
-            'params' : {}
-          };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/c949739cfbc90099b78fd03e56e0c06f/invoke.js"></script>
-      </div>
-      
       <div class="tool-header">
         <button class="back-button" onclick="closeTool('simple-interest')">
           <i class="fas fa-arrow-left"></i>
@@ -962,49 +767,10 @@
           <div class="formula-note">সূত্র: (মূলধন × হার × সময়) ÷ 100</div>
         </div>
       </div>
-      
-      <div class="ad-container-bottom">
-        <script type="text/javascript">
-          atOptions = {
-            'key' : 'dafe8afc0b0266d5b95a198608249118',
-            'format' : 'iframe',
-            'height' : 60,
-            'width' : 468,
-            'params' : {}
-          };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/dafe8afc0b0266d5b95a198608249118/invoke.js"></script>
-      </div>
     </div>
     
     <!-- Compound Interest Calculator -->
     <div id="compound-interest-tool" class="tool-content">
-      <div class="ad-container">
-        <script type="text/javascript">
-          atOptions = {
-            'key' : 'a481763decb23c81da5296aea54b0fd9',
-            'format' : 'iframe',
-            'height' : 50,
-            'width' : 320,
-            'params' : {}
-          };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/a481763decb23c81da5296aea54b0fd9/invoke.js"></script>
-      </div>
-      
-      <div class="ad-container-wide">
-        <script type="text/javascript">
-          atOptions = {
-            'key' : 'c949739cfbc90099b78fd03e56e0c06f',
-            'format' : 'iframe',
-            'height' : 90,
-            'width' : 728,
-            'params' : {}
-          };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/c949739cfbc90099b78fd03e56e0c06f/invoke.js"></script>
-      </div>
-      
       <div class="tool-header">
         <button class="back-button" onclick="closeTool('compound-interest')">
           <i class="fas fa-arrow-left"></i>
@@ -1041,49 +807,10 @@
           <div class="formula-note">সূত্র: P(1 + r/n)^(nt)</div>
         </div>
       </div>
-      
-      <div class="ad-container-bottom">
-        <script type="text/javascript">
-          atOptions = {
-            'key' : 'dafe8afc0b0266d5b95a198608249118',
-            'format' : 'iframe',
-            'height' : 60,
-            'width' : 468,
-            'params' : {}
-          };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/dafe8afc0b0266d5b95a198608249118/invoke.js"></script>
-      </div>
     </div>
     
     <!-- Area Conversion -->
     <div id="area-tool" class="tool-content">
-      <div class="ad-container">
-        <script type="text/javascript">
-          atOptions = {
-            'key' : 'a481763decb23c81da5296aea54b0fd9',
-            'format' : 'iframe',
-            'height' : 50,
-            'width' : 320,
-            'params' : {}
-          };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/a481763decb23c81da5296aea54b0fd9/invoke.js"></script>
-      </div>
-      
-      <div class="ad-container-wide">
-        <script type="text/javascript">
-          atOptions = {
-            'key' : 'c949739cfbc90099b78fd03e56e0c06f',
-            'format' : 'iframe',
-            'height' : 90,
-            'width' : 728,
-            'params' : {}
-          };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/c949739cfbc90099b78fd03e56e0c06f/invoke.js"></script>
-      </div>
-      
       <div class="tool-header">
         <button class="back-button" onclick="closeTool('area')">
           <i class="fas fa-arrow-left"></i>
@@ -1122,49 +849,10 @@
           <div class="result-value" id="areaResult">0</div>
         </div>
       </div>
-      
-      <div class="ad-container-bottom">
-        <script type="text/javascript">
-          atOptions = {
-            'key' : 'dafe8afc0b0266d5b95a198608249118',
-            'format' : 'iframe',
-            'height' : 60,
-            'width' : 468,
-            'params' : {}
-          };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/dafe8afc0b0266d5b95a198608249118/invoke.js"></script>
-      </div>
     </div>
     
     <!-- Length Conversion -->
     <div id="length-tool" class="tool-content">
-      <div class="ad-container">
-        <script type="text/javascript">
-          atOptions = {
-            'key' : 'a481763decb23c81da5296aea54b0fd9',
-            'format' : 'iframe',
-            'height' : 50,
-            'width' : 320,
-            'params' : {}
-          };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/a481763decb23c81da5296aea54b0fd9/invoke.js"></script>
-      </div>
-      
-      <div class="ad-container-wide">
-        <script type="text/javascript">
-          atOptions = {
-            'key' : 'c949739cfbc90099b78fd03e56e0c06f',
-            'format' : 'iframe',
-            'height' : 90,
-            'width' : 728,
-            'params' : {}
-          };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/c949739cfbc90099b78fd03e56e0c06f/invoke.js"></script>
-      </div>
-      
       <div class="tool-header">
         <button class="back-button" onclick="closeTool('length')">
           <i class="fas fa-arrow-left"></i>
@@ -1205,49 +893,10 @@
           <div class="result-value" id="lengthResult">0</div>
         </div>
       </div>
-      
-      <div class="ad-container-bottom">
-        <script type="text/javascript">
-          atOptions = {
-            'key' : 'dafe8afc0b0266d5b95a198608249118',
-            'format' : 'iframe',
-            'height' : 60,
-            'width' : 468,
-            'params' : {}
-          };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/dafe8afc0b0266d5b95a198608249118/invoke.js"></script>
-      </div>
     </div>
     
     <!-- Age Calculator -->
     <div id="age-tool" class="tool-content">
-      <div class="ad-container">
-        <script type="text/javascript">
-          atOptions = {
-            'key' : 'a481763decb23c81da5296aea54b0fd9',
-            'format' : 'iframe',
-            'height' : 50,
-            'width' : 320,
-            'params' : {}
-          };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/a481763decb23c81da5296aea54b0fd9/invoke.js"></script>
-      </div>
-      
-      <div class="ad-container-wide">
-        <script type="text/javascript">
-          atOptions = {
-            'key' : 'c949739cfbc90099b78fd03e56e0c06f',
-            'format' : 'iframe',
-            'height' : 90,
-            'width' : 728,
-            'params' : {}
-          };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/c949739cfbc90099b78fd03e56e0c06f/invoke.js"></script>
-      </div>
-      
       <div class="tool-header">
         <button class="back-button" onclick="closeTool('age')">
           <i class="fas fa-arrow-left"></i>
@@ -1264,19 +913,6 @@
           <div class="result-title">আপনার বয়স:</div>
           <div class="result-value" id="ageResult">0 বছর</div>
         </div>
-      </div>
-      
-      <div class="ad-container-bottom">
-        <script type="text/javascript">
-          atOptions = {
-            'key' : 'dafe8afc0b0266d5b95a198608249118',
-            'format' : 'iframe',
-            'height' : 60,
-            'width' : 468,
-            'params' : {}
-          };
-        </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/dafe8afc0b0266d5b95a198608249118/invoke.js"></script>
       </div>
     </div>
   </div>
@@ -1426,28 +1062,11 @@
       }
     }
     
-    // Keyboard Support for both calculator and tools
+    // Keyboard Support
     document.addEventListener('keydown', function(event) {
       const key = event.key;
-      const activeElement = document.activeElement;
       
-      // If focus is in an input field in tools, don't handle calculator keys
-      if (activeElement.tagName === 'INPUT' || activeElement.tagName === 'SELECT') {
-        // Allow Enter key to trigger calculations in tools
-        if (key === 'Enter') {
-          const toolId = activeElement.closest('.tool-content')?.id;
-          if (toolId) {
-            const calculateFunction = getCalculateFunctionForTool(toolId);
-            if (calculateFunction) {
-              calculateFunction();
-              event.preventDefault();
-            }
-          }
-        }
-        return;
-      }
-      
-      // Calculator keyboard support
+      // Allow numbers, operators, and decimal point
       if (/[0-9+\-*/.=]/.test(key)) {
         event.preventDefault();
         if (key === '=' || key === 'Enter') {
@@ -1470,21 +1089,7 @@
       }
     });
     
-    function getCalculateFunctionForTool(toolId) {
-      switch(toolId) {
-        case 'pipe-tool': return calculatePipe;
-        case 'mm-tool': return calculateMM;
-        case 'weight-tool': return calculateKG;
-        case 'simple-interest-tool': return calculateInterest;
-        case 'compound-interest-tool': return calculateCompoundInterest;
-        case 'area-tool': return convertArea;
-        case 'length-tool': return convertLength;
-        case 'age-tool': return calculateAge;
-        default: return null;
-      }
-    }
-    
-    // Pipe Calculation with Suto fractions
+    // Pipe Calculation
     function calculatePipe() {
       const diameter = parseFloat(document.getElementById("pipeDiameter").value);
       if (isNaN(diameter) || diameter <= 0) {
@@ -1496,33 +1101,7 @@
       const circumference = diameter * Math.PI;
       const roundedValue = Math.round(circumference * 100) / 100;
       
-      // Convert to suto fractions (1 inch = 8 suto)
-      const wholeInches = Math.floor(roundedValue);
-      const decimalPart = roundedValue - wholeInches;
-      const suto = Math.round(decimalPart * 8);
-      
-      // Suto names in Bengali
-      const sutoNames = {
-        0: "",
-        1: "১ সুতো",
-        2: "২ সুতো",
-        3: "৩ সুতো",
-        4: "৪ সুতো",
-        5: "৫ সুতো",
-        6: "৬ সুতো",
-        7: "৭ সুতো"
-      };
-      
-      let resultText;
-      if (wholeInches > 0 && suto > 0) {
-        resultText = `${wholeInches} ইঞ্চি ${sutoNames[suto]}`;
-      } else if (wholeInches > 0) {
-        resultText = `${wholeInches} ইঞ্চি`;
-      } else {
-        resultText = `${sutoNames[suto]}`;
-      }
-      
-      document.getElementById("pipeResult").innerText = resultText;
+      document.getElementById("pipeResult").innerText = `${roundedValue} ইঞ্চি`;
     }
     
     // Millimeter Conversion (Updated as requested)
