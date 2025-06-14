@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SmartCalculator BD | Professional Calculator Suite</title>
+  <meta name="description" content="Professional calculator suite with multiple tools, unit conversions, and multi-language support for Bangladesh and international users.">
+  <meta name="theme-color" content="#4a6bff">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
   <style>
     :root {
       --primary-color: #4a6bff;
@@ -64,7 +68,7 @@
       padding: 5px;
       width: 100%;
       flex-shrink: 0;
-      display: none; /* Hidden by default, shown on larger screens */
+      display: none;
     }
     
     .main-content {
@@ -123,7 +127,7 @@
       background: #f0f2f5;
       padding: 12px;
       text-align: right;
-      font-size: 1.6rem;
+      font-size: 1.4rem;
       margin-bottom: 10px;
       border-radius: 8px;
       min-height: 55px;
@@ -143,7 +147,7 @@
     }
     
     .calc-btn {
-      padding: 10px;
+      padding: 8px;
       font-size: 1rem;
       border: none;
       border-radius: 8px;
@@ -484,18 +488,18 @@
     /* Responsive Design */
     @media (max-width: 480px) {
       .calc-btn {
-        padding: 8px;
+        padding: 6px;
         font-size: 0.9rem;
       }
       
       .calc-display {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
         min-height: 45px;
         padding: 8px;
       }
       
       .mobile-calculator {
-        padding: 8px;
+        padding: 6px;
       }
       
       .calculator-header {
@@ -505,6 +509,10 @@
       .menu-button {
         font-size: 1.3rem;
         margin-right: 5px;
+      }
+      
+      .header-actions {
+        gap: 6px;
       }
     }
     
@@ -606,10 +614,291 @@
     .suto-toggle.active {
       color: var(--secondary-color);
     }
+
+    /* Language Selector */
+    .language-selector {
+      position: relative;
+      display: inline-block;
+    }
+
+    .language-button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.1rem;
+      cursor: pointer;
+      padding: 5px;
+    }
+
+    .language-dropdown {
+      position: absolute;
+      right: 0;
+      background-color: white;
+      min-width: 120px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+      border-radius: 8px;
+      overflow: hidden;
+      display: none;
+    }
+
+    .language-dropdown.show {
+      display: block;
+    }
+
+    .language-option {
+      color: black;
+      padding: 8px 12px;
+      text-decoration: none;
+      display: block;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .language-option:hover {
+      background-color: #f1f1f1;
+    }
+
+    body.dark-mode .language-dropdown {
+      background-color: #2d3748;
+    }
+
+    body.dark-mode .language-option {
+      color: white;
+    }
+
+    body.dark-mode .language-option:hover {
+      background-color: #4a5568;
+    }
+
+    /* Modal Styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 110;
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-overlay.show {
+      display: flex;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: var(--border-radius);
+      padding: 20px;
+      max-width: 95%;
+      max-height: 80vh;
+      overflow-y: auto;
+      width: 500px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .modal-title {
+      font-size: 1.3rem;
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+
+    .close-modal {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--dark-color);
+    }
+
+    .modal-body {
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .modal-footer {
+      margin-top: 20px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .modal-btn {
+      padding: 8px 16px;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    body.dark-mode .modal-content {
+      background: #2d3748;
+    }
+
+    body.dark-mode .modal-title,
+    body.dark-mode .modal-body,
+    body.dark-mode .close-modal {
+      color: white;
+    }
+
+    /* About Button */
+    .about-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.1rem;
+      cursor: pointer;
+      padding: 5px;
+    }
+    
+    /* Share Button */
+    .share-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.1rem;
+      cursor: pointer;
+      padding: 5px;
+    }
+    
+    /* Developer Profile Links */
+    .developer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 15px;
+    }
+    
+    .developer-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px;
+      background-color: #f5f7ff;
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--dark-color);
+      transition: all 0.2s;
+    }
+    
+    .developer-link:hover {
+      background-color: #e2e8f0;
+      transform: translateX(3px);
+    }
+    
+    .developer-link i {
+      color: var(--primary-color);
+      font-size: 1.2rem;
+    }
+    
+    .developer-link-text {
+      flex: 1;
+    }
+    
+    body.dark-mode .developer-link {
+      background-color: #2d3748;
+      color: white;
+    }
+    
+    body.dark-mode .developer-link:hover {
+      background-color: #4a5568;
+    }
+    
+    /* Copy Link Button */
+    .copy-link-btn {
+      background-color: var(--secondary-color);
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      margin-top: 10px;
+    }
+    
+    .copy-link-btn:hover {
+      background-color: #00b248;
+    }
+    
+    /* Share Section */
+    .share-section {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #f5f7ff;
+      border-radius: 8px;
+    }
+    
+    .share-title {
+      font-size: 1rem;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+    
+    .share-input {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    
+    .share-input input {
+      flex: 1;
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+    
+    .share-buttons {
+      display: flex;
+      gap: 8px;
+    }
+    
+    .share-button {
+      flex: 1;
+      padding: 8px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+    
+    .share-facebook {
+      background-color: #3b5998;
+      color: white;
+    }
+    
+    .share-whatsapp {
+      background-color: #25D366;
+      color: white;
+    }
+    
+    .share-twitter {
+      background-color: #1DA1F2;
+      color: white;
+    }
+    
+    body.dark-mode .share-section {
+      background-color: #2d3748;
+    }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="manifest" href="/manifest.json">
 </head>
 <body>
   <div class="container">
@@ -633,7 +922,7 @@
         <button class="menu-button" onclick="openMenu()">
           <i class="fas fa-bars"></i>
         </button>
-        <h2>SmartCalculator BD</h2>
+        <h2 id="appTitle">SmartCalculator BD</h2>
         <div class="header-actions">
           <button class="suto-toggle" id="sutoToggle" onclick="toggleSutoMode()" title="ইঞ্চি/সুতো মোড">
             <i class="fas fa-ruler"></i>
@@ -641,8 +930,25 @@
           <button class="history-btn" onclick="openHistory()">
             <i class="fas fa-history"></i>
           </button>
+          <button class="share-btn" onclick="openShareModal()">
+            <i class="fas fa-share-alt"></i>
+          </button>
+          <div class="language-selector">
+            <button class="language-button" onclick="toggleLanguageDropdown()">
+              <i class="fas fa-globe"></i>
+            </button>
+            <div class="language-dropdown" id="languageDropdown">
+              <div class="language-option" onclick="changeLanguage('bn')">বাংলা</div>
+              <div class="language-option" onclick="changeLanguage('en')">English</div>
+              <div class="language-option" onclick="changeLanguage('hi')">हिन्दी</div>
+              <div class="language-option" onclick="changeLanguage('ar')">العربية</div>
+            </div>
+          </div>
           <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
             <i class="fas fa-moon"></i>
+          </button>
+          <button class="about-btn" onclick="openAboutModal()">
+            <i class="fas fa-info-circle"></i>
           </button>
         </div>
       </div>
@@ -652,7 +958,7 @@
         <div class="mobile-calculator">
           <div class="calc-display" id="calcDisplay">0</div>
           <div class="calc-buttons">
-            <button class="calc-btn clear" onclick="clearDisplay()">C</button>
+            <button class="calc-btn clear" onclick="clearDisplay()" id="clearBtn">C</button>
             <button class="calc-btn function" onclick="appendToDisplay('(')">(</button>
             <button class="calc-btn function" onclick="appendToDisplay(')')">)</button>
             <button class="calc-btn operator" onclick="appendToDisplay('/')">÷</button>
@@ -670,8 +976,8 @@
             <button class="calc-btn operator" onclick="appendToDisplay('+')">+</button>
             <button class="calc-btn" onclick="appendToDisplay('0')">0</button>
             <button class="calc-btn" onclick="appendToDisplay('.')">.</button>
-            <button class="calc-btn function" onclick="backspace()">⌫</button>
-            <button class="calc-btn equals" onclick="calculate()">=</button>
+            <button class="calc-btn function" onclick="backspace()" id="backspaceBtn">⌫</button>
+            <button class="calc-btn equals" onclick="calculate()" id="equalsBtn">=</button>
           </div>
         </div>
       </div>
@@ -683,7 +989,7 @@
     <!-- Menu Content -->
     <div class="menu-content" id="menuContent">
       <div class="menu-header">
-        <h3>ক্যালকুলেটর টুলস</h3>
+        <h3 id="menuTitle">ক্যালকুলেটর টুলস</h3>
         <button class="close-menu" onclick="closeMenu()">
           <i class="fas fa-times"></i>
         </button>
@@ -692,43 +998,59 @@
       <!-- Construction Calculators -->
       <div class="menu-section">
         <div class="menu-section-title">
-          <i class="fas fa-hammer"></i> নির্মাণ ক্যালকুলেটর
+          <i class="fas fa-hammer"></i> <span id="constructionTitle">নির্মাণ ক্যালকুলেটর</span>
         </div>
-        <div class="menu-item" onclick="openTool('pipe')">রাউন্ড ফ্ল্যাটেনিং</div>
-        <div class="menu-item" onclick="openTool('mm')">গুনিয়া স্কেল মাইক্রোমিটার</div>
-        <div class="menu-item" onclick="openTool('weight')">বস্তার ওজন হিসাব মন - কেজি</div>
+        <div class="menu-item" onclick="openTool('pipe')" id="pipeToolItem">রাউন্ড ফ্ল্যাটেনিং</div>
+        <div class="menu-item" onclick="openTool('mm')" id="mmToolItem">গুনিয়া স্কেল মাইক্রোমিটার</div>
+        <div class="menu-item" onclick="openTool('weight')" id="weightToolItem">বস্তার ওজন হিসাব মন - কেজি</div>
       </div>
       
       <!-- Financial Calculators -->
       <div class="menu-section">
         <div class="menu-section-title">
-          <i class="fas fa-money-bill-wave"></i> আর্থিক ক্যালকুলেটর
+          <i class="fas fa-money-bill-wave"></i> <span id="financeTitle">আর্থিক ক্যালকুলেটর</span>
         </div>
-        <div class="menu-item" onclick="openTool('simple-interest')">সরল সুদ</div>
-        <div class="menu-item" onclick="openTool('compound-interest')">চক্রবৃদ্ধি সুদ</div>
+        <div class="menu-item" onclick="openTool('simple-interest')" id="simpleInterestItem">সরল সুদ</div>
+        <div class="menu-item" onclick="openTool('compound-interest')" id="compoundInterestItem">চক্রবৃদ্ধি সুদ</div>
       </div>
       
       <!-- Conversion Calculators -->
       <div class="menu-section">
         <div class="menu-section-title">
-          <i class="fas fa-exchange-alt"></i> রূপান্তর ক্যালকুলেটর
+          <i class="fas fa-exchange-alt"></i> <span id="conversionTitle">রূপান্তর ক্যালকুলেটর</span>
         </div>
-        <div class="menu-item" onclick="openTool('area')">এলাকা রূপান্তর</div>
-        <div class="menu-item" onclick="openTool('length')">দৈর্ঘ্য রূপান্তর</div>
-        <div class="menu-item" onclick="openTool('age')">বয়স ক্যালকুলেটর</div>
+        <div class="menu-item" onclick="openTool('area')" id="areaItem">এলাকা রূপান্তর</div>
+        <div class="menu-item" onclick="openTool('length')" id="lengthItem">দৈর্ঘ্য রূপান্তর</div>
+        <div class="menu-item" onclick="openTool('age')" id="ageItem">বয়স ক্যালকুলেটর</div>
+      </div>
+      
+      <!-- Developer Profile -->
+      <div class="menu-section">
+        <div class="menu-section-title">
+          <i class="fas fa-user-tie"></i> <span id="developerTitle">ডেভেলপার প্রোফাইল</span>
+        </div>
+        <div class="menu-item" onclick="openDeveloperModal()" id="developerItem">ডেভেলপার সম্পর্কে</div>
+      </div>
+      
+      <!-- Share App -->
+      <div class="menu-section">
+        <div class="menu-section-title">
+          <i class="fas fa-share-alt"></i> <span id="shareTitle">শেয়ার করুন</span>
+        </div>
+        <div class="menu-item" onclick="openShareModal()" id="shareItem">অ্যাপ শেয়ার করুন</div>
       </div>
     </div>
     
     <!-- History Panel -->
     <div class="history-panel" id="historyPanel">
       <div class="history-header">
-        <h3 class="history-title">গণনার ইতিহাস</h3>
+        <h3 class="history-title" id="historyTitle">গণনার ইতিহাস</h3>
         <button class="close-history" onclick="closeHistory()">
           <i class="fas fa-times"></i>
         </button>
       </div>
       <div id="historyItems"></div>
-      <button class="clear-history" onclick="clearHistory()">ইতিহাস মুছুন</button>
+      <button class="clear-history" id="clearHistoryBtn" onclick="clearHistory()">ইতিহাস মুছুন</button>
     </div>
     
     <!-- Tool Contents -->
@@ -764,25 +1086,25 @@
         <button class="back-button" onclick="closeTool('pipe')">
           <i class="fas fa-arrow-left"></i>
         </button>
-        <h2 class="tool-title">রাউন্ড ফ্ল্যাটেনিং</h2>
+        <h2 class="tool-title" id="pipeToolTitle">রাউন্ড ফ্ল্যাটেনিং</h2>
       </div>
       
       <div class="calculator-card">
         <div class="input-group">
-          <label for="pipeDiameter">
+          <label for="pipeDiameter" id="pipeDiameterLabel">
             একটি গোলাকার বস্তুকে (যেমন পাইপ, রড, তার বা যেকোনো বৃত্তাকার অংশ) যদি সোজা বা সমতল করা হয়, তাহলে তার মোট দৈর্ঘ্য কত হবে বের করুন:
             <span class="tooltip">
               <i class="fas fa-info-circle"></i>
-              <span class="tooltip-text">স্ট্যান্ডার্ড পাইপের ব্যাস ইনপুট করুন, যেমন: 6 ইঞ্চি</span>
+              <span class="tooltip-text" id="pipeTooltipText">স্ট্যান্ডার্ড পাইপের ব্যাস ইনপুট করুন, যেমন: 6 ইঞ্চি</span>
             </span>
           </label>
           <input type="number" id="pipeDiameter" placeholder="উদাহরণ: 6" step="0.01">
         </div>
-        <button onclick="calculatePipe()">হিসাব করুন</button>
+        <button onclick="calculatePipe()" id="pipeCalculateBtn">হিসাব করুন</button>
         <div class="result-container">
-          <div class="result-title">ফ্ল্যাট করার পর পরিমাপ:</div>
+          <div class="result-title" id="pipeResultTitle">ফ্ল্যাট করার পর পরিমাপ:</div>
           <div class="result-value" id="pipeResult">0 ইঞ্চি</div>
-          <div class="formula-note">পরিধি = π × ব্যাস</div>
+          <div class="formula-note" id="pipeFormulaNote">পরিধি = π × ব্যাস</div>
         </div>
       </div>
       
@@ -832,18 +1154,18 @@
         <button class="back-button" onclick="closeTool('mm')">
           <i class="fas fa-arrow-left"></i>
         </button>
-        <h2 class="tool-title">গুনিয়া স্কেল মাইক্রোমিটার</h2>
+        <h2 class="tool-title" id="mmToolTitle">গুনিয়া স্কেল মাইক্রোমিটার</h2>
       </div>
       
       <div class="calculator-card">
         <div class="input-group">
-          <label for="mmInput">ভূমি জরিপের কাজে এটি ব্যবহার করে জমি পরিমাপের সময় লিঙ্ক থেকে ফুটে রূপান্তর করুন। ∆ মাইক্রোমিটার (mum):</label>
+          <label for="mmInput" id="mmInputLabel">ভূমি জরিপের কাজে এটি ব্যবহার করে জমি পরিমাপের সময় লিঙ্ক থেকে ফুটে রূপান্তর করুন। ∆ মাইক্রোমিটার (mum):</label>
           <input type="number" id="mmInput" placeholder="উদাহরণ: 100" step="0.01" oninput="calculateMM()">
         </div>
         <div class="result-container">
-          <div class="result-title">রূপান্তরিত মান:</div>
+          <div class="result-title" id="mmResultTitle">রূপান্তরিত মান:</div>
           <div class="result-value" id="mmResult">0 Food</div>
-          <div class="formula-note">1 = 12 ইঞ্চি</div>
+          <div class="formula-note" id="mmFormulaNote">1 = 12 ইঞ্চি</div>
         </div>
       </div>
       
@@ -893,20 +1215,20 @@
         <button class="back-button" onclick="closeTool('weight')">
           <i class="fas fa-arrow-left"></i>
         </button>
-        <h2 class="tool-title">বস্তার ওজন হিসাব মন - কেজি</h2>
+        <h2 class="tool-title" id="weightToolTitle">বস্তার ওজন হিসাব মন - কেজি</h2>
       </div>
       
       <div class="calculator-card">
         <div class="input-group">
-          <label for="bagWeight">প্রতি বস্তার ধান বা যেকোনো দ্রব্য ওজন হিসাব ⚖️(মন - কেজি):</label>
+          <label for="bagWeight" id="bagWeightLabel">প্রতি বস্তার ধান বা যেকোনো দ্রব্য ওজন হিসাব ⚖️(মন - কেজি):</label>
           <input type="number" id="bagWeight" placeholder="উদাহরণ: 25" step="0.01" oninput="calculateKG()">
         </div>
         <div class="input-group">
-          <label for="bagCount">মোট বস্তা (টি):</label>
+          <label for="bagCount" id="bagCountLabel">মোট বস্তা (টি):</label>
           <input type="number" id="bagCount" placeholder="উদাহরণ: 10" oninput="calculateKG()">
         </div>
         <div class="result-container">
-          <div class="result-title">মোট ওজন:</div>
+          <div class="result-title" id="kgResultTitle">মোট ওজন:</div>
           <div class="result-value" id="kgResult">0 কেজি</div>
         </div>
       </div>
@@ -957,27 +1279,27 @@
         <button class="back-button" onclick="closeTool('simple-interest')">
           <i class="fas fa-arrow-left"></i>
         </button>
-        <h2 class="tool-title">সরল সুদ ক্যালকুলেটর</h2>
+        <h2 class="tool-title" id="simpleInterestTitle">সরল সুদ ক্যালকুলেটর</h2>
       </div>
       
       <div class="calculator-card">
         <div class="input-group">
-          <label for="principal">মূলধন (টাকা):</label>
+          <label for="principal" id="principalLabel">মূলধন (টাকা):</label>
           <input type="number" id="principal" placeholder="উদাহরণ: 10000">
         </div>
         <div class="input-group">
-          <label for="rate">সুদের হার (%):</label>
+          <label for="rate" id="rateLabel">সুদের হার (%):</label>
           <input type="number" id="rate" placeholder="উদাহরণ: 8.5" step="0.01">
         </div>
         <div class="input-group">
-          <label for="time">সময় (বছরে):</label>
+          <label for="time" id="timeLabel">সময় (বছরে):</label>
           <input type="number" id="time" placeholder="উদাহরণ: 5" step="0.5">
         </div>
-        <button onclick="calculateInterest()">হিসাব করুন</button>
+        <button onclick="calculateInterest()" id="calculateInterestBtn">হিসাব করুন</button>
         <div class="result-container">
-          <div class="result-title">সুদের পরিমাণ:</div>
+          <div class="result-title" id="interestResultTitle">সুদের পরিমাণ:</div>
           <div class="result-value" id="interestResult">0 টাকা</div>
-          <div class="formula-note">সূত্র: (মূলধন × হার × সময়) ÷ 100</div>
+          <div class="formula-note" id="interestFormulaNote">সূত্র: (মূলধন × হার × সময়) ÷ 100</div>
         </div>
       </div>
       
@@ -1027,24 +1349,24 @@
         <button class="back-button" onclick="closeTool('compound-interest')">
           <i class="fas fa-arrow-left"></i>
         </button>
-        <h2 class="tool-title">চক্রবৃদ্ধি সুদ ক্যালকুলেটর</h2>
+        <h2 class="tool-title" id="compoundInterestTitle">চক্রবৃদ্ধি সুদ ক্যালকুলেটর</h2>
       </div>
       
       <div class="calculator-card">
         <div class="input-group">
-          <label for="cPrincipal">মূলধন (টাকা):</label>
+          <label for="cPrincipal" id="cPrincipalLabel">মূলধন (টাকা):</label>
           <input type="number" id="cPrincipal" placeholder="উদাহরণ: 10000">
         </div>
         <div class="input-group">
-          <label for="cRate">বার্ষিক সুদের হার (%):</label>
+          <label for="cRate" id="cRateLabel">বার্ষিক সুদের হার (%):</label>
           <input type="number" id="cRate" placeholder="উদাহরণ: 8.5" step="0.01">
         </div>
         <div class="input-group">
-          <label for="cTime">সময় (বছরে):</label>
+          <label for="cTime" id="cTimeLabel">সময় (বছরে):</label>
           <input type="number" id="cTime" placeholder="উদাহরণ: 5" step="0.5">
         </div>
         <div class="input-group">
-          <label for="cCompound">কম্পাউন্ড ফ্রিকোয়েন্সি:</label>
+          <label for="cCompound" id="cCompoundLabel">কম্পাউন্ড ফ্রিকোয়েন্সি:</label>
           <select id="cCompound">
             <option value="1">বার্ষিক</option>
             <option value="2">অর্ধ-বার্ষিক</option>
@@ -1052,11 +1374,11 @@
             <option value="12">মাসিক</option>
           </select>
         </div>
-        <button onclick="calculateCompoundInterest()">হিসাব করুন</button>
+        <button onclick="calculateCompoundInterest()" id="calculateCompoundBtn">হিসাব করুন</button>
         <div class="result-container">
-          <div class="result-title">ভবিষ্যৎ মূল্য:</div>
+          <div class="result-title" id="compoundResultTitle">ভবিষ্যৎ মূল্য:</div>
           <div class="result-value" id="compoundResult">0 টাকা</div>
-          <div class="formula-note">সূত্র: P(1 + r/n)^(nt)</div>
+          <div class="formula-note" id="compoundFormulaNote">সূত্র: P(1 + r/n)^(nt)</div>
         </div>
       </div>
       
@@ -1106,16 +1428,16 @@
         <button class="back-button" onclick="closeTool('area')">
           <i class="fas fa-arrow-left"></i>
         </button>
-        <h2 class="tool-title">এলাকা রূপান্তর</h2>
+        <h2 class="tool-title" id="areaToolTitle">এলাকা রূপান্তর</h2>
       </div>
       
       <div class="calculator-card">
         <div class="input-group">
-          <label for="areaValue">মান:</label>
+          <label for="areaValue" id="areaValueLabel">মান:</label>
           <input type="number" id="areaValue" placeholder="উদাহরণ: 1" step="0.01">
         </div>
         <div class="input-group">
-          <label for="areaFrom">থেকে:</label>
+          <label for="areaFrom" id="areaFromLabel">থেকে:</label>
           <select id="areaFrom">
             <option value="sqft">বর্গফুট</option>
             <option value="sqm">বর্গমিটার</option>
@@ -1125,7 +1447,7 @@
           </select>
         </div>
         <div class="input-group">
-          <label for="areaTo">প্রতি:</label>
+          <label for="areaTo" id="areaToLabel">প্রতি:</label>
           <select id="areaTo">
             <option value="sqm">বর্গমিটার</option>
             <option value="sqft">বর্গফুট</option>
@@ -1134,9 +1456,9 @@
             <option value="decimal">ডেসিমাল</option>
           </select>
         </div>
-        <button onclick="convertArea()">রূপান্তর করুন</button>
+        <button onclick="convertArea()" id="convertAreaBtn">রূপান্তর করুন</button>
         <div class="result-container">
-          <div class="result-title">ফলাফল:</div>
+          <div class="result-title" id="areaResultTitle">ফলাফল:</div>
           <div class="result-value" id="areaResult">0</div>
         </div>
       </div>
@@ -1187,16 +1509,16 @@
         <button class="back-button" onclick="closeTool('length')">
           <i class="fas fa-arrow-left"></i>
         </button>
-        <h2 class="tool-title">দৈর্ঘ্য রূপান্তর</h2>
+        <h2 class="tool-title" id="lengthToolTitle">দৈর্ঘ্য রূপান্তর</h2>
       </div>
       
       <div class="calculator-card">
         <div class="input-group">
-          <label for="lengthValue">মান:</label>
+          <label for="lengthValue" id="lengthValueLabel">মান:</label>
           <input type="number" id="lengthValue" placeholder="উদাহরণ: 1" step="0.01">
         </div>
         <div class="input-group">
-          <label for="lengthFrom">থেকে:</label>
+          <label for="lengthFrom" id="lengthFromLabel">থেকে:</label>
           <select id="lengthFrom">
             <option value="mm">মিলিমিটার</option>
             <option value="cm">সেন্টিমিটার</option>
@@ -1207,7 +1529,7 @@
           </select>
         </div>
         <div class="input-group">
-          <label for="lengthTo">প্রতি:</label>
+          <label for="lengthTo" id="lengthToLabel">প্রতি:</label>
           <select id="lengthTo">
             <option value="cm">সেন্টিমিটার</option>
             <option value="mm">মিলিমিটার</option>
@@ -1217,9 +1539,9 @@
             <option value="ft">ফুট</option>
           </select>
         </div>
-        <button onclick="convertLength()">রূপান্তর করুন</button>
+        <button onclick="convertLength()" id="convertLengthBtn">রূপান্তর করুন</button>
         <div class="result-container">
-          <div class="result-title">ফলাফল:</div>
+          <div class="result-title" id="lengthResultTitle">ফলাফল:</div>
           <div class="result-value" id="lengthResult">0</div>
         </div>
       </div>
@@ -1270,16 +1592,16 @@
         <button class="back-button" onclick="closeTool('age')">
           <i class="fas fa-arrow-left"></i>
         </button>
-        <h2 class="tool-title">বয়স ক্যালকুলেটর</h2>
+        <h2 class="tool-title" id="ageToolTitle">বয়স ক্যালকুলেটর</h2>
       </div>
       
       <div class="calculator-card">
         <div class="input-group">
-          <label for="birthDate">জন্ম তারিখ:</label>
+          <label for="birthDate" id="birthDateLabel">জন্ম তারিখ:</label>
           <input type="date" id="birthDate" onchange="calculateAge()">
         </div>
         <div class="result-container">
-          <div class="result-title">আপনার বয়স:</div>
+          <div class="result-title" id="ageResultTitle">আপনার বয়স:</div>
           <div class="result-value" id="ageResult">0 বছর</div>
         </div>
       </div>
@@ -1299,7 +1621,645 @@
     </div>
   </div>
 
+  <!-- About Modal -->
+  <div class="modal-overlay" id="aboutModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="aboutTitle">About SmartCalculator BD</h3>
+        <button class="close-modal" onclick="closeAboutModal()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p id="aboutDescription">SmartCalculator BD is a professional calculator suite designed for Bangladeshi users with specialized tools for construction, finance, and unit conversions. This application supports multiple languages and provides accurate calculations for various needs.</p>
+        <h4 id="featuresTitle">Features:</h4>
+        <ul id="featuresList">
+          <li>Basic calculator with advanced functions</li>
+          <li>Construction calculators (pipe flattening, weight conversion)</li>
+          <li>Financial calculators (simple & compound interest)</li>
+          <li>Unit converters (area, length)</li>
+          <li>Age calculator</li>
+          <li>Multi-language support</li>
+          <li>Dark/Light mode</li>
+          <li>Suto/Inch mode for local measurements</li>
+        </ul>
+        <h4 id="versionTitle">Version: 2.0.0</h4>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-btn" onclick="openPrivacyModal()" id="privacyBtn">Privacy Policy</button>
+        <button class="modal-btn" onclick="closeAboutModal()" id="closeAboutBtn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Privacy Policy Modal -->
+  <div class="modal-overlay" id="privacyModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="privacyTitle">Privacy Policy</h3>
+        <button class="close-modal" onclick="closePrivacyModal()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p id="privacyIntro">SmartCalculator BD respects your privacy. This policy explains how we handle your information:</p>
+        <h4 id="dataCollectionTitle">Data Collection:</h4>
+        <p id="dataCollectionText">We do not collect any personal information. Calculation history is stored locally on your device only.</p>
+        <h4 id="adsTitle">Advertisements:</h4>
+        <p id="adsText">This app displays third-party ads. Ad providers may collect anonymous data for ad personalization.</p>
+        <h4 id="changesTitle">Policy Changes:</h4>
+        <p id="changesText">We may update this policy. Continued use of the app constitutes acceptance of the updated policy.</p>
+        <h4 id="contactTitle">Contact:</h4>
+        <p id="contactText">For questions about this policy, please contact us at support@smartcalculatorbd.com</p>
+        <p id="lastUpdated">Last Updated: June 2023</p>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-btn" onclick="closePrivacyModal()" id="closePrivacyBtn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Developer Profile Modal -->
+  <div class="modal-overlay" id="developerModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="developerModalTitle">Developer Profile</h3>
+        <button class="close-modal" onclick="closeDeveloperModal()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p id="developerIntro">Connect with the developer of SmartCalculator BD:</p>
+        
+        <div class="developer-links">
+          <a href="https://www.linkedin.com/in/mdabubakkar?trk=contact-info" target="_blank" class="developer-link">
+            <i class="fab fa-linkedin"></i>
+            <span class="developer-link-text" id="linkedinLink">LinkedIn Profile</span>
+            <i class="fas fa-external-link-alt"></i>
+          </a>
+          
+          <a href="https://t.me/working_online_earning_bd" target="_blank" class="developer-link">
+            <i class="fab fa-telegram"></i>
+            <span class="developer-link-text" id="telegramLink">Telegram Channel</span>
+            <i class="fas fa-external-link-alt"></i>
+          </a>
+          
+          <a href="https://youtube.com/@tipsbd25" target="_blank" class="developer-link">
+            <i class="fab fa-youtube"></i>
+            <span class="developer-link-text" id="youtubeLink">YouTube Channel</span>
+            <i class="fas fa-external-link-alt"></i>
+          </a>
+          
+          <a href="https://www.facebook.com/mdabubakkar.25" target="_blank" class="developer-link">
+            <i class="fab fa-facebook"></i>
+            <span class="developer-link-text" id="facebookLink">Facebook Profile</span>
+            <i class="fas fa-external-link-alt"></i>
+          </a>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-btn" onclick="closeDeveloperModal()" id="closeDeveloperBtn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Share Modal -->
+  <div class="modal-overlay" id="shareModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="shareModalTitle">Share App</h3>
+        <button class="close-modal" onclick="closeShareModal()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="share-section">
+          <h4 class="share-title" id="shareAppTitle">Share SmartCalculator BD with friends</h4>
+          <div class="share-input">
+            <input type="text" id="shareLink" value="https://apk.e-droid.net/apk/app3608658-yrtpbn.apk?v=6" readonly>
+            <button class="copy-link-btn" onclick="copyShareLink()" id="copyLinkBtn">Copy</button>
+          </div>
+          <div class="share-buttons">
+            <button class="share-button share-facebook" onclick="shareOnFacebook()">
+              <i class="fab fa-facebook-f"></i>
+              <span id="shareFacebook">Facebook</span>
+            </button>
+            <button class="share-button share-whatsapp" onclick="shareOnWhatsApp()">
+              <i class="fab fa-whatsapp"></i>
+              <span id="shareWhatsApp">WhatsApp</span>
+            </button>
+            <button class="share-button share-twitter" onclick="shareOnTwitter()">
+              <i class="fab fa-twitter"></i>
+              <span id="shareTwitter">Twitter</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-btn" onclick="closeShareModal()" id="closeShareBtn">Close</button>
+      </div>
+    </div>
+  </div>
+
   <script>
+    // Language Support
+    const translations = {
+      bn: {
+        appTitle: "SmartCalculator BD",
+        clearBtn: "C",
+        backspaceBtn: "⌫",
+        equalsBtn: "=",
+        menuTitle: "ক্যালকুলেটর টুলস",
+        constructionTitle: "নির্মাণ ক্যালকুলেটর",
+        financeTitle: "আর্থিক ক্যালকুলেটর",
+        conversionTitle: "রূপান্তর ক্যালকুলেটর",
+        developerTitle: "ডেভেলপার প্রোফাইল",
+        shareTitle: "শেয়ার করুন",
+        pipeToolItem: "রাউন্ড ফ্ল্যাটেনিং",
+        mmToolItem: "গুনিয়া স্কেল মাইক্রোমিটার",
+        weightToolItem: "বস্তার ওজন হিসাব মন - কেজি",
+        simpleInterestItem: "সরল সুদ",
+        compoundInterestItem: "চক্রবৃদ্ধি সুদ",
+        areaItem: "এলাকা রূপান্তর",
+        lengthItem: "দৈর্ঘ্য রূপান্তর",
+        ageItem: "বয়স ক্যালকুলেটর",
+        developerItem: "ডেভেলপার সম্পর্কে",
+        shareItem: "অ্যাপ শেয়ার করুন",
+        historyTitle: "গণনার ইতিহাস",
+        clearHistoryBtn: "ইতিহাস মুছুন",
+        pipeToolTitle: "রাউন্ড ফ্ল্যাটেনিং",
+        pipeDiameterLabel: "একটি গোলাকার বস্তুকে (যেমন পাইপ, রড, তার বা যেকোনো বৃত্তাকার অংশ) যদি সোজা বা সমতল করা হয়, তাহলে তার মোট দৈর্ঘ্য কত হবে বের করুন:",
+        pipeTooltipText: "স্ট্যান্ডার্ড পাইপের ব্যাস ইনপুট করুন, যেমন: 6 ইঞ্চি",
+        pipeCalculateBtn: "হিসাব করুন",
+        pipeResultTitle: "ফ্ল্যাট করার পর পরিমাপ:",
+        pipeFormulaNote: "পরিধি = π × ব্যাস",
+        mmToolTitle: "গুনিয়া স্কেল মাইক্রোমিটার",
+        mmInputLabel: "ভূমি জরিপের কাজে এটি ব্যবহার করে জমি পরিমাপের সময় লিঙ্ক থেকে ফুটে রূপান্তর করুন। ∆ মাইক্রোমিটার (mum):",
+        mmResultTitle: "রূপান্তরিত মান:",
+        mmFormulaNote: "1 = 12 ইঞ্চি",
+        weightToolTitle: "বস্তার ওজন হিসাব মন - কেজি",
+        bagWeightLabel: "প্রতি বস্তার ধান বা যেকোনো দ্রব্য ওজন হিসাব ⚖️(মন - কেজি):",
+        bagCountLabel: "মোট বস্তা (টি):",
+        kgResultTitle: "মোট ওজন:",
+        simpleInterestTitle: "সরল সুদ ক্যালকুলেটর",
+        principalLabel: "মূলধন (টাকা):",
+        rateLabel: "সুদের হার (%):",
+        timeLabel: "সময় (বছরে):",
+        calculateInterestBtn: "হিসাব করুন",
+        interestResultTitle: "সুদের পরিমাণ:",
+        interestFormulaNote: "সূত্র: (মূলধন × হার × সময়) ÷ 100",
+        compoundInterestTitle: "চক্রবৃদ্ধি সুদ ক্যালকুলেটর",
+        cPrincipalLabel: "মূলধন (টাকা):",
+        cRateLabel: "বার্ষিক সুদের হার (%):",
+        cTimeLabel: "সময় (বছরে):",
+        cCompoundLabel: "কম্পাউন্ড ফ্রিকোয়েন্সি:",
+        calculateCompoundBtn: "হিসাব করুন",
+        compoundResultTitle: "ভবিষ্যৎ মূল্য:",
+        compoundFormulaNote: "সূত্র: P(1 + r/n)^(nt)",
+        areaToolTitle: "এলাকা রূপান্তর",
+        areaValueLabel: "মান:",
+        areaFromLabel: "থেকে:",
+        areaToLabel: "প্রতি:",
+        convertAreaBtn: "রূপান্তর করুন",
+        areaResultTitle: "ফলাফল:",
+        lengthToolTitle: "দৈর্ঘ্য রূপান্তর",
+        lengthValueLabel: "মান:",
+        lengthFromLabel: "থেকে:",
+        lengthToLabel: "প্রতি:",
+        convertLengthBtn: "রূপান্তর করুন",
+        lengthResultTitle: "ফলাফল:",
+        ageToolTitle: "বয়স ক্যালকুলেটর",
+        birthDateLabel: "জন্ম তারিখ:",
+        ageResultTitle: "আপনার বয়স:",
+        aboutTitle: "SmartCalculator BD সম্পর্কে",
+        aboutDescription: "SmartCalculator BD হল বাংলাদেশী ব্যবহারকারীদের জন্য ডিজাইন করা একটি পেশাদার ক্যালকুলেটর স্যুট যাতে নির্মাণ, অর্থসংস্থান এবং একক রূপান্তরের জন্য বিশেষায়িত টুল রয়েছে। এই অ্যাপ্লিকেশনটি একাধিক ভাষা সমর্থন করে এবং বিভিন্ন প্রয়োজনের জন্য সঠিক গণনা প্রদান করে।",
+        featuresTitle: "বৈশিষ্ট্যসমূহ:",
+        featuresList: [
+          "উন্নত ফাংশন সহ বেসিক ক্যালকুলেটর",
+          "নির্মাণ ক্যালকুলেটর (পাইপ ফ্ল্যাটেনিং, ওজন রূপান্তর)",
+          "আর্থিক ক্যালকুলেটর (সরল ও চক্রবৃদ্ধি সুদ)",
+          "একক রূপান্তরকারী (এলাকা, দৈর্ঘ্য)",
+          "বয়স ক্যালকুলেটর",
+          "বহুভাষা সমর্থন",
+          "ডার্ক/লাইট মোড",
+          "স্থানীয় পরিমাপের জন্য সুতো/ইঞ্চি মোড"
+        ],
+        versionTitle: "সংস্করণ: 2.0.0",
+        privacyBtn: "গোপনীয়তা নীতি",
+        closeAboutBtn: "বন্ধ",
+        privacyTitle: "গোপনীয়তা নীতি",
+        privacyIntro: "SmartCalculator BD আপনার গোপনীয়তা সম্মান করে। এই নীতিটি ব্যাখ্যা করে যে আমরা কীভাবে আপনার তথ্য পরিচালনা করি:",
+        dataCollectionTitle: "ডেটা সংগ্রহ:",
+        dataCollectionText: "আমরা কোনো ব্যক্তিগত তথ্য সংগ্রহ করি না। গণনার ইতিহাস শুধুমাত্র আপনার ডিভাইসে স্থানীয়ভাবে সংরক্ষণ করা হয়।",
+        adsTitle: "বিজ্ঞাপন:",
+        adsText: "এই অ্যাপটি তৃতীয় পক্ষের বিজ্ঞাপন প্রদর্শন করে। বিজ্ঞাপন প্রদানকারীরা বিজ্ঞাপন ব্যক্তিগতকরণের জন্য বেনামে ডেটা সংগ্রহ করতে পারে।",
+        changesTitle: "নীতি পরিবর্তন:",
+        changesText: "আমরা এই নীতি আপডেট করতে পারি। অ্যাপটি ব্যবহার চালিয়ে যাওয়া আপডেট করা নীতির গ্রহণযোগ্যতা গঠন করে।",
+        contactTitle: "যোগাযোগ:",
+        contactText: "এই নীতি সম্পর্কে প্রশ্নের জন্য support@smartcalculatorbd.com এ আমাদের সাথে যোগাযোগ করুন",
+        lastUpdated: "সর্বশেষ আপডেট: জুন ২০২৩",
+        closePrivacyBtn: "বন্ধ",
+        developerModalTitle: "ডেভেলপার প্রোফাইল",
+        developerIntro: "SmartCalculator BD-এর ডেভেলপারের সাথে সংযোগ করুন:",
+        linkedinLink: "লিংকডইন প্রোফাইল",
+        telegramLink: "টেলিগ্রাম চ্যানেল",
+        youtubeLink: "ইউটিউব চ্যানেল",
+        facebookLink: "ফেসবুক প্রোফাইল",
+        closeDeveloperBtn: "বন্ধ",
+        shareModalTitle: "অ্যাপ শেয়ার করুন",
+        shareAppTitle: "SmartCalculator BD বন্ধুদের সাথে শেয়ার করুন",
+        copyLinkBtn: "কপি করুন",
+        shareFacebook: "ফেসবুক",
+        shareWhatsApp: "হোয়াটসঅ্যাপ",
+        shareTwitter: "টুইটার",
+        closeShareBtn: "বন্ধ"
+      },
+      en: {
+        appTitle: "SmartCalculator BD",
+        clearBtn: "C",
+        backspaceBtn: "⌫",
+        equalsBtn: "=",
+        menuTitle: "Calculator Tools",
+        constructionTitle: "Construction Calculators",
+        financeTitle: "Financial Calculators",
+        conversionTitle: "Conversion Calculators",
+        developerTitle: "Developer Profile",
+        shareTitle: "Share",
+        pipeToolItem: "Round Pipe Flattening",
+        mmToolItem: "Gunia Scale Micrometer",
+        weightToolItem: "Bag Weight (Mon-Kg)",
+        simpleInterestItem: "Simple Interest",
+        compoundInterestItem: "Compound Interest",
+        areaItem: "Area Conversion",
+        lengthItem: "Length Conversion",
+        ageItem: "Age Calculator",
+        developerItem: "About Developer",
+        shareItem: "Share App",
+        historyTitle: "Calculation History",
+        clearHistoryBtn: "Clear History",
+        pipeToolTitle: "Round Pipe Flattening",
+        pipeDiameterLabel: "Calculate the total length when a round object (like pipe, rod, wire) is straightened or flattened:",
+        pipeTooltipText: "Enter standard pipe diameter, e.g.: 6 inches",
+        pipeCalculateBtn: "Calculate",
+        pipeResultTitle: "Flattened Measurement:",
+        pipeFormulaNote: "Circumference = π × Diameter",
+        mmToolTitle: "Gunia Scale Micrometer",
+        mmInputLabel: "Convert from link to feet for land measurement using this tool. ∆ Micrometer (mum):",
+        mmResultTitle: "Converted Value:",
+        mmFormulaNote: "1 = 12 inches",
+        weightToolTitle: "Bag Weight (Mon-Kg)",
+        bagWeightLabel: "Calculate weight of rice or any product per bag ⚖️(Mon - Kg):",
+        bagCountLabel: "Total Bags:",
+        kgResultTitle: "Total Weight:",
+        simpleInterestTitle: "Simple Interest Calculator",
+        principalLabel: "Principal (Taka):",
+        rateLabel: "Interest Rate (%):",
+        timeLabel: "Time (Years):",
+        calculateInterestBtn: "Calculate",
+        interestResultTitle: "Interest Amount:",
+        interestFormulaNote: "Formula: (Principal × Rate × Time) ÷ 100",
+        compoundInterestTitle: "Compound Interest Calculator",
+        cPrincipalLabel: "Principal (Taka):",
+        cRateLabel: "Annual Interest Rate (%):",
+        cTimeLabel: "Time (Years):",
+        cCompoundLabel: "Compound Frequency:",
+        calculateCompoundBtn: "Calculate",
+        compoundResultTitle: "Future Value:",
+        compoundFormulaNote: "Formula: P(1 + r/n)^(nt)",
+        areaToolTitle: "Area Conversion",
+        areaValueLabel: "Value:",
+        areaFromLabel: "From:",
+        areaToLabel: "To:",
+        convertAreaBtn: "Convert",
+        areaResultTitle: "Result:",
+        lengthToolTitle: "Length Conversion",
+        lengthValueLabel: "Value:",
+        lengthFromLabel: "From:",
+        lengthToLabel: "To:",
+        convertLengthBtn: "Convert",
+        lengthResultTitle: "Result:",
+        ageToolTitle: "Age Calculator",
+        birthDateLabel: "Birth Date:",
+        ageResultTitle: "Your Age:",
+        aboutTitle: "About SmartCalculator BD",
+        aboutDescription: "SmartCalculator BD is a professional calculator suite designed for Bangladeshi users with specialized tools for construction, finance, and unit conversions. This application supports multiple languages and provides accurate calculations for various needs.",
+        featuresTitle: "Features:",
+        featuresList: [
+          "Basic calculator with advanced functions",
+          "Construction calculators (pipe flattening, weight conversion)",
+          "Financial calculators (simple & compound interest)",
+          "Unit converters (area, length)",
+          "Age calculator",
+          "Multi-language support",
+          "Dark/Light mode",
+          "Suto/Inch mode for local measurements"
+        ],
+        versionTitle: "Version: 2.0.0",
+        privacyBtn: "Privacy Policy",
+        closeAboutBtn: "Close",
+        privacyTitle: "Privacy Policy",
+        privacyIntro: "SmartCalculator BD respects your privacy. This policy explains how we handle your information:",
+        dataCollectionTitle: "Data Collection:",
+        dataCollectionText: "We do not collect any personal information. Calculation history is stored locally on your device only.",
+        adsTitle: "Advertisements:",
+        adsText: "This app displays third-party ads. Ad providers may collect anonymous data for ad personalization.",
+        changesTitle: "Policy Changes:",
+        changesText: "We may update this policy. Continued use of the app constitutes acceptance of the updated policy.",
+        contactTitle: "Contact:",
+        contactText: "For questions about this policy, please contact us at support@smartcalculatorbd.com",
+        lastUpdated: "Last Updated: June 2023",
+        closePrivacyBtn: "Close",
+        developerModalTitle: "Developer Profile",
+        developerIntro: "Connect with the developer of SmartCalculator BD:",
+        linkedinLink: "LinkedIn Profile",
+        telegramLink: "Telegram Channel",
+        youtubeLink: "YouTube Channel",
+        facebookLink: "Facebook Profile",
+        closeDeveloperBtn: "Close",
+        shareModalTitle: "Share App",
+        shareAppTitle: "Share SmartCalculator BD with friends",
+        copyLinkBtn: "Copy",
+        shareFacebook: "Facebook",
+        shareWhatsApp: "WhatsApp",
+        shareTwitter: "Twitter",
+        closeShareBtn: "Close"
+      },
+      hi: {
+        appTitle: "SmartCalculator BD",
+        clearBtn: "C",
+        backspaceBtn: "⌫",
+        equalsBtn: "=",
+        menuTitle: "कैलकुलेटर टूल्स",
+        constructionTitle: "निर्माण कैलकुलेटर",
+        financeTitle: "वित्तीय कैलकुलेटर",
+        conversionTitle: "रूपांतरण कैलकुलेटर",
+        developerTitle: "डेवलपर प्रोफाइल",
+        shareTitle: "शेयर करें",
+        pipeToolItem: "राउंड पाइप फ्लैटनिंग",
+        mmToolItem: "गुनिया स्केल माइक्रोमीटर",
+        weightToolItem: "बैग वजन (मन-किलो)",
+        simpleInterestItem: "साधारण ब्याज",
+        compoundInterestItem: "चक्रवृद्धि ब्याज",
+        areaItem: "क्षेत्र रूपांतरण",
+        lengthItem: "लंबाई रूपांतरण",
+        ageItem: "आयु कैलकुलेटर",
+        developerItem: "डेवलपर के बारे में",
+        shareItem: "ऐप शेयर करें",
+        historyTitle: "गणना इतिहास",
+        clearHistoryBtn: "इतिहास साफ करें",
+        pipeToolTitle: "राउंड पाइप फ्लैटनिंग",
+        pipeDiameterLabel: "एक गोल वस्तु (जैसे पाइप, रॉड, तार) को सीधा या चपटा करने पर कुल लंबाई की गणना करें:",
+        pipeTooltipText: "मानक पाइप व्यास दर्ज करें, उदाहरण: 6 इंच",
+        pipeCalculateBtn: "गणना करें",
+        pipeResultTitle: "चपटा माप:",
+        pipeFormulaNote: "परिधि = π × व्यास",
+        mmToolTitle: "गुनिया स्केल माइक्रोमीटर",
+        mmInputLabel: "भूमि माप के लिए लिंक से फीट में बदलने के लिए इस टूल का उपयोग करें। ∆ माइक्रोमीटर (mum):",
+        mmResultTitle: "परिवर्तित मूल्य:",
+        mmFormulaNote: "1 = 12 इंच",
+        weightToolTitle: "बैग वजन (मन-किलो)",
+        bagWeightLabel: "प्रति बैग चावल या किसी उत्पाद का वजन ⚖️(मन - किलो):",
+        bagCountLabel: "कुल बैग:",
+        kgResultTitle: "कुल वजन:",
+        simpleInterestTitle: "साधारण ब्याज कैलकुलेटर",
+        principalLabel: "मूलधन (टका):",
+        rateLabel: "ब्याज दर (%):",
+        timeLabel: "समय (वर्ष):",
+        calculateInterestBtn: "गणना करें",
+        interestResultTitle: "ब्याज राशि:",
+        interestFormulaNote: "सूत्र: (मूलधन × दर × समय) ÷ 100",
+        compoundInterestTitle: "चक्रवृद्धि ब्याज कैलकुलेटर",
+        cPrincipalLabel: "मूलधन (टका):",
+        cRateLabel: "वार्षिक ब्याज दर (%):",
+        cTimeLabel: "समय (वर्ष):",
+        cCompoundLabel: "चक्रवृद्धि आवृत्ति:",
+        calculateCompoundBtn: "गणना करें",
+        compoundResultTitle: "भविष्य मूल्य:",
+        compoundFormulaNote: "सूत्र: P(1 + r/n)^(nt)",
+        areaToolTitle: "क्षेत्र रूपांतरण",
+        areaValueLabel: "मूल्य:",
+        areaFromLabel: "से:",
+        areaToLabel: "प्रति:",
+        convertAreaBtn: "रूपांतरण",
+        areaResultTitle: "परिणाम:",
+        lengthToolTitle: "लंबाई रूपांतरण",
+        lengthValueLabel: "मूल्य:",
+        lengthFromLabel: "से:",
+        lengthToLabel: "प्रति:",
+        convertLengthBtn: "रूपांतरण",
+        lengthResultTitle: "परिणाम:",
+        ageToolTitle: "आयु कैलकुलेटर",
+        birthDateLabel: "जन्म तिथि:",
+        ageResultTitle: "आपकी आयु:",
+        aboutTitle: "SmartCalculator BD के बारे में",
+        aboutDescription: "SmartCalculator BD बांग्लादेशी उपयोगकर्ताओं के लिए डिज़ाइन किया गया एक पेशेवर कैलकुलेटर सूट है जिसमें निर्माण, वित्त और इकाई रूपांतरण के लिए विशेष उपकरण हैं। यह एप्लिकेशन कई भाषाओं का समर्थन करता है और विभिन्न आवश्यकताओं के लिए सटीक गणना प्रदान करता है।",
+        featuresTitle: "विशेषताएं:",
+        featuresList: [
+          "उन्नत कार्यों के साथ बेसिक कैलकुलेटर",
+          "निर्माण कैलकुलेटर (पाइप फ्लैटनिंग, वजन रूपांतरण)",
+          "वित्तीय कैलकुलेटर (साधारण और चक्रवृद्धि ब्याज)",
+          "इकाई रूपांतरक (क्षेत्र, लंबाई)",
+          "आयु कैलकुलेटर",
+          "बहुभाषा समर्थन",
+          "डार्क/लाइट मोड",
+          "स्थानीय माप के लिए सुतो/इंच मोड"
+        ],
+        versionTitle: "संस्करण: 2.0.0",
+        privacyBtn: "गोपनीयता नीति",
+        closeAboutBtn: "बंद करें",
+        privacyTitle: "गोपनीयता नीति",
+        privacyIntro: "SmartCalculator BD आपकी गोपनीयता का सम्मान करता है। यह नीति बताती है कि हम आपकी जानकारी को कैसे संभालते हैं:",
+        dataCollectionTitle: "डेटा संग्रह:",
+        dataCollectionText: "हम कोई व्यक्तिगत जानकारी एकत्र नहीं करते हैं। गणना इतिहास केवल आपके डिवाइस पर स्थानीय रूप से संग्रहीत किया जाता है।",
+        adsTitle: "विज्ञापन:",
+        adsText: "यह ऐप तृतीय-पक्ष विज्ञापन प्रदर्शित करता है। विज्ञापन प्रदाता विज्ञापन व्यक्तिकरण के लिए अनाम डेटा एकत्र कर सकते हैं।",
+        changesTitle: "नीति परिवर्तन:",
+        changesText: "हम इस नीति को अपडेट कर सकते हैं। ऐप का उपयोग जारी रखना अपडेट की गई नीति की स्वीकृति का गठन करता है।",
+        contactTitle: "संपर्क:",
+        contactText: "इस नीति के बारे में प्रश्नों के लिए, कृपया हमसे support@smartcalculatorbd.com पर संपर्क करें",
+        lastUpdated: "अंतिम अद्यतन: जून 2023",
+        closePrivacyBtn: "बंद करें",
+        developerModalTitle: "डेवलपर प्रोफाइल",
+        developerIntro: "SmartCalculator BD के डेवलपर से जुड़ें:",
+        linkedinLink: "लिंक्डइन प्रोफाइल",
+        telegramLink: "टेलीग्राम चैनल",
+        youtubeLink: "यूट्यूब चैनल",
+        facebookLink: "फेसबुक प्रोफाइल",
+        closeDeveloperBtn: "बंद करें",
+        shareModalTitle: "ऐप शेयर करें",
+        shareAppTitle: "SmartCalculator BD को दोस्तों के साथ शेयर करें",
+        copyLinkBtn: "कॉपी करें",
+        shareFacebook: "फेसबुक",
+        shareWhatsApp: "व्हाट्सएप",
+        shareTwitter: "ट्विटर",
+        closeShareBtn: "बंद करें"
+      },
+      ar: {
+        appTitle: "SmartCalculator BD",
+        clearBtn: "C",
+        backspaceBtn: "⌫",
+        equalsBtn: "=",
+        menuTitle: "أدوات الآلة الحاسبة",
+        constructionTitle: "حاسبات البناء",
+        financeTitle: "الحاسبات المالية",
+        conversionTitle: "حاسبات التحويل",
+        developerTitle: "ملف المطور",
+        shareTitle: "مشاركة",
+        pipeToolItem: "تسطيح الأنابيب المستديرة",
+        mmToolItem: "ميكرومتر مقياس القنيا",
+        weightToolItem: "وزن الكيس (من-كجم)",
+        simpleInterestItem: "الفائدة البسيطة",
+        compoundInterestItem: "الفائدة المركبة",
+        areaItem: "تحويل المساحة",
+        lengthItem: "تحويل الطول",
+        ageItem: "حاسبة العمر",
+        developerItem: "حول المطور",
+        shareItem: "مشاركة التطبيق",
+        historyTitle: "سجل الحسابات",
+        clearHistoryBtn: "مسح السجل",
+        pipeToolTitle: "تسطيح الأنابيب المستديرة",
+        pipeDiameterLabel: "احسب الطول الإجمالي عند تسطيح جسم دائري (مثل الأنبوب، القضيب، السلك):",
+        pipeTooltipText: "أدخل قطر الأنبوب القياسي، مثال: 6 بوصات",
+        pipeCalculateBtn: "احسب",
+        pipeResultTitle: "قياس التسطح:",
+        pipeFormulaNote: "المحيط = π × القطر",
+        mmToolTitle: "ميكرومتر مقياس القنيا",
+        mmInputLabel: "تحويل من الرابط إلى القدم لقياس الأرض باستخدام هذه الأداة. ∆ ميكرومتر (mum):",
+        mmResultTitle: "القيمة المحولة:",
+        mmFormulaNote: "1 = 12 بوصة",
+        weightToolTitle: "وزن الكيس (من-كجم)",
+        bagWeightLabel: "احسب وزن الأرز أو أي منتج لكل كيس ⚖️(من - كجم):",
+        bagCountLabel: "إجمالي الأكياس:",
+        kgResultTitle: "الوزن الإجمالي:",
+        simpleInterestTitle: "حاسبة الفائدة البسيطة",
+        principalLabel: "المبلغ الأصلي (تاكا):",
+        rateLabel: "معدل الفائدة (%):",
+        timeLabel: "الوقت (سنوات):",
+        calculateInterestBtn: "احسب",
+        interestResultTitle: "مبلغ الفائدة:",
+        interestFormulaNote: "الصيغة: (المبلغ الأصلي × المعدل × الوقت) ÷ 100",
+        compoundInterestTitle: "حاسبة الفائدة المركبة",
+        cPrincipalLabel: "المبلغ الأصلي (تاكا):",
+        cRateLabel: "معدل الفائدة السنوي (%):",
+        cTimeLabel: "الوقت (سنوات):",
+        cCompoundLabel: "تردد المضاعفة:",
+        calculateCompoundBtn: "احسب",
+        compoundResultTitle: "القيمة المستقبلية:",
+        compoundFormulaNote: "الصيغة: P(1 + r/n)^(nt)",
+        areaToolTitle: "تحويل المساحة",
+        areaValueLabel: "القيمة:",
+        areaFromLabel: "من:",
+        areaToLabel: "إلى:",
+        convertAreaBtn: "تحويل",
+        areaResultTitle: "النتيجة:",
+        lengthToolTitle: "تحويل الطول",
+        lengthValueLabel: "القيمة:",
+        lengthFromLabel: "من:",
+        lengthToLabel: "إلى:",
+        convertLengthBtn: "تحويل",
+        lengthResultTitle: "النتيجة:",
+        ageToolTitle: "حاسبة العمر",
+        birthDateLabel: "تاريخ الميلاد:",
+        ageResultTitle: "عمرك:",
+        aboutTitle: "حول SmartCalculator BD",
+        aboutDescription: "SmartCalculator BD هي مجموعة حاسبات محترفة مصممة لمستخدمي بنغلاديش مع أدوات متخصصة للبناء والتمويل وتحويل الوحدات. يدعم هذا التطبيق لغات متعددة ويوفر حسابات دقيقة لمختلف الاحتياجات.",
+        featuresTitle: "الميزات:",
+        featuresList: [
+          "آلة حاسبة أساسية مع وظائف متقدمة",
+          "حاسبات البناء (تسطيح الأنابيب، تحويل الوزن)",
+          "الحاسبات المالية (الفائدة البسيطة والمركبة)",
+          "محولات الوحدات (المساحة، الطول)",
+          "حاسبة العمر",
+          "دعم متعدد اللغات",
+          "وضع الظلام/الضوء",
+          "وضع السوتو/البوصة للقياسات المحلية"
+        ],
+        versionTitle: "الإصدار: 2.0.0",
+        privacyBtn: "سياسة الخصوصية",
+        closeAboutBtn: "إغلاق",
+        privacyTitle: "سياسة الخصوصية",
+        privacyIntro: "تحترم SmartCalculator BD خصوصيتك. توضح هذه السياسة كيفية تعاملنا مع معلوماتك:",
+        dataCollectionTitle: "جمع البيانات:",
+        dataCollectionText: "لا نقوم بجمع أي معلومات شخصية. يتم تخزين سجل الحسابات محليًا على جهازك فقط.",
+        adsTitle: "الإعلانات:",
+        adsText: "يعرض هذا التطبيق إعلانات من جهات خارجية. قد يقوم مزودو الإعلانات بجمع بيانات مجهولة الهوية لتخصيص الإعلانات.",
+        changesTitle: "تغييرات السياسة:",
+        changesText: "قد نقوم بتحديث هذه السياسة. يشكل الاستمرار في استخدام التطبيق قبولًا للسياسة المحدثة.",
+        contactTitle: "الاتصال:",
+        contactText: "للأسئلة حول هذه السياسة، يرجى الاتصال بنا على support@smartcalculatorbd.com",
+        lastUpdated: "آخر تحديث: يونيو 2023",
+        closePrivacyBtn: "إغلاق",
+        developerModalTitle: "ملف المطور",
+        developerIntro: "تواصل مع مطور SmartCalculator BD:",
+        linkedinLink: "ملف LinkedIn",
+        telegramLink: "قناة Telegram",
+        youtubeLink: "قناة YouTube",
+        facebookLink: "ملف Facebook",
+        closeDeveloperBtn: "إغلاق",
+        shareModalTitle: "مشاركة التطبيق",
+        shareAppTitle: "شارك SmartCalculator BD مع الأصدقاء",
+        copyLinkBtn: "نسخ",
+        shareFacebook: "Facebook",
+        shareWhatsApp: "WhatsApp",
+        shareTwitter: "Twitter",
+        closeShareBtn: "إغلاق"
+      }
+    };
+
+    // Current language
+    let currentLanguage = localStorage.getItem('language') || 'bn';
+    
+    // Initialize language
+    function initLanguage() {
+      changeLanguage(currentLanguage);
+    }
+    
+    // Change language
+    function changeLanguage(lang) {
+      currentLanguage = lang;
+      localStorage.setItem('language', lang);
+      
+      const langData = translations[lang];
+      
+      // Update all elements with translations
+      for (const [key, value] of Object.entries(langData)) {
+        const elements = document.querySelectorAll(`[id="${key}"]`);
+        
+        elements.forEach(element => {
+          if (Array.isArray(value)) {
+            // Handle lists
+            element.innerHTML = value.map(item => `<li>${item}</li>`).join('');
+          } else {
+            if (element.tagName === 'INPUT' && element.placeholder) {
+              element.placeholder = value;
+            } else if (element.tagName === 'OPTION') {
+              element.textContent = value;
+            } else {
+              element.textContent = value;
+            }
+          }
+        });
+      }
+      
+      // Close language dropdown
+      document.getElementById('languageDropdown').classList.remove('show');
+      
+      // Update suto toggle title
+      updateSutoToggleTitle();
+    }
+    
+    // Toggle language dropdown
+    function toggleLanguageDropdown() {
+      document.getElementById('languageDropdown').classList.toggle('show');
+    }
+    
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function(event) {
+      if (!event.target.closest('.language-selector')) {
+        document.getElementById('languageDropdown').classList.remove('show');
+      }
+    });
+
     // Menu Functions
     function openMenu() {
       document.getElementById('menuOverlay').style.display = 'block';
@@ -1338,7 +2298,10 @@
       historyContainer.innerHTML = '';
       
       if (calculationHistory.length === 0) {
-        historyContainer.innerHTML = '<p>কোন ইতিহাস নেই</p>';
+        const noHistoryText = currentLanguage === 'bn' ? 'কোন ইতিহাস নেই' : 
+                            currentLanguage === 'hi' ? 'कोई इतिहास नहीं' :
+                            currentLanguage === 'ar' ? 'لا يوجد سجل' : 'No history';
+        historyContainer.innerHTML = `<p>${noHistoryText}</p>`;
         return;
       }
       
@@ -1405,11 +2368,11 @@
       
       if (sutoMode) {
         sutoToggle.classList.add('active');
-        sutoToggle.title = "সুতো মোড সক্রিয় (ইঞ্চিতে ফেরত যান)";
       } else {
         sutoToggle.classList.remove('active');
-        sutoToggle.title = "ইঞ্চি মোড সক্রিয় (সুতোতে ফেরত যান)";
       }
+      
+      updateSutoToggleTitle();
       
       // Update display if we have a current value
       if (currentDisplay !== '0') {
@@ -1417,13 +2380,23 @@
       }
     }
     
+    function updateSutoToggleTitle() {
+      if (currentLanguage === 'bn') {
+        sutoToggle.title = sutoMode ? "সুতো মোড সক্রিয় (ইঞ্চিতে ফেরত যান)" : "ইঞ্চি মোড সক্রিয় (সুতোতে ফেরত যান)";
+      } else if (currentLanguage === 'hi') {
+        sutoToggle.title = sutoMode ? "सुतो मोड सक्रिय (इंच पर वापस जाएं)" : "इंच मोड सक्रिय (सुतो पर वापस जाएं)";
+      } else if (currentLanguage === 'ar') {
+        sutoToggle.title = sutoMode ? "وضع السوتو نشط (العودة إلى البوصة)" : "وضع البوصة نشط (العودة إلى السوتو)";
+      } else {
+        sutoToggle.title = sutoMode ? "Suto mode active (Switch to inches)" : "Inch mode active (Switch to suto)";
+      }
+    }
+    
     // Initialize suto mode
     if (sutoMode) {
       sutoToggle.classList.add('active');
-      sutoToggle.title = "সুতো মোড সক্রিয় (ইঞ্চিতে ফেরত যান)";
-    } else {
-      sutoToggle.title = "ইঞ্চি মোড সক্রিয় (সুতোতে ফেরত যান)";
     }
+    updateSutoToggleTitle();
     
     // Function to convert decimal inches to suto format
     function convertToSuto(value) {
@@ -1439,22 +2412,77 @@
       const sutoFraction = totalSuto / 8;
       
       // Special cases for fractions
-      const fractionMap = {
-        0.125: "১ সুতো",
-        0.1875: "১/৫ সুতো",
-        0.25: "২ সুতো",
-        0.3125: "২/৫ সুতো",
-        0.375: "৩ সুতো",
-        0.4375: "৩/৫ সুতো",
-        0.5: "৪ সুতো",
-        0.5625: "৪/৫ সুতো",
-        0.625: "৫ সুতো",
-        0.6875: "৫/৫ সুতো",
-        0.75: "৬ সুতো",
-        0.8125: "৬/৫ সুতো",
-        0.875: "৭ সুতো",
-        0.9375: "৭/৫ সুতো"
-      };
+      let fractionMap = {};
+      
+      if (currentLanguage === 'bn') {
+        fractionMap = {
+          0.125: "১ সুতো",
+          0.1875: "১/৫ সুতো",
+          0.25: "২ সুতো",
+          0.3125: "২/৫ সুতো",
+          0.375: "৩ সুতো",
+          0.4375: "৩/৫ সুতো",
+          0.5: "৪ সুতো",
+          0.5625: "৪/৫ সুতো",
+          0.625: "৫ সুতো",
+          0.6875: "৫/৫ সুতো",
+          0.75: "৬ সুতো",
+          0.8125: "৬/৫ সুতো",
+          0.875: "৭ সুতো",
+          0.9375: "৭/৫ সুতো"
+        };
+      } else if (currentLanguage === 'hi') {
+        fractionMap = {
+          0.125: "1 सुतो",
+          0.1875: "1/5 सुतो",
+          0.25: "2 सुतो",
+          0.3125: "2/5 सुतो",
+          0.375: "3 सुतो",
+          0.4375: "3/5 सुतो",
+          0.5: "4 सुतो",
+          0.5625: "4/5 सुतो",
+          0.625: "5 सुतो",
+          0.6875: "5/5 सुतो",
+          0.75: "6 सुतो",
+          0.8125: "6/5 सुतो",
+          0.875: "7 सुतो",
+          0.9375: "7/5 सुतो"
+        };
+      } else if (currentLanguage === 'ar') {
+        fractionMap = {
+          0.125: "1 سوتو",
+          0.1875: "1/5 سوتو",
+          0.25: "2 سوتو",
+          0.3125: "2/5 سوتو",
+          0.375: "3 سوتو",
+          0.4375: "3/5 سوتو",
+          0.5: "4 سوتو",
+          0.5625: "4/5 سوتو",
+          0.625: "5 سوتو",
+          0.6875: "5/5 سوتو",
+          0.75: "6 سوتو",
+          0.8125: "6/5 سوتو",
+          0.875: "7 سوتو",
+          0.9375: "7/5 سوتو"
+        };
+      } else {
+        fractionMap = {
+          0.125: "1 suto",
+          0.1875: "1/5 suto",
+          0.25: "2 suto",
+          0.3125: "2/5 suto",
+          0.375: "3 suto",
+          0.4375: "3/5 suto",
+          0.5: "4 suto",
+          0.5625: "4/5 suto",
+          0.625: "5 suto",
+          0.6875: "5/5 suto",
+          0.75: "6 suto",
+          0.8125: "6/5 suto",
+          0.875: "7 suto",
+          0.9375: "7/5 suto"
+        };
+      }
       
       // Find the closest fraction
       let closestFraction = "";
@@ -1471,7 +2499,15 @@
       // Only use fraction if it's very close (to avoid incorrect matches)
       if (minDiff < 0.01) {
         if (wholeInches > 0) {
-          return `${wholeInches} ইঞ্চি ${closestFraction}`;
+          if (currentLanguage === 'bn') {
+            return `${wholeInches} ইঞ্চি ${closestFraction}`;
+          } else if (currentLanguage === 'hi') {
+            return `${wholeInches} इंच ${closestFraction}`;
+          } else if (currentLanguage === 'ar') {
+            return `${wholeInches} بوصة ${closestFraction}`;
+          } else {
+            return `${wholeInches} inch ${closestFraction}`;
+          }
         } else {
           return closestFraction;
         }
@@ -1479,7 +2515,15 @@
       
       // Default case - show as decimal
       if (wholeInches > 0) {
-        return `${wholeInches} ইঞ্চি ${decimalPart.toFixed(4)}`;
+        if (currentLanguage === 'bn') {
+          return `${wholeInches} ইঞ্চি ${decimalPart.toFixed(4)}`;
+        } else if (currentLanguage === 'hi') {
+          return `${wholeInches} इंच ${decimalPart.toFixed(4)}`;
+        } else if (currentLanguage === 'ar') {
+          return `${wholeInches} بوصة ${decimalPart.toFixed(4)}`;
+        } else {
+          return `${wholeInches} inch ${decimalPart.toFixed(4)}`;
+        }
       } else {
         return `${decimalPart.toFixed(4)}`;
       }
@@ -1540,7 +2584,10 @@
         currentDisplay = result;
         updateDisplay();
       } catch (error) {
-        currentDisplay = 'Error';
+        const errorText = currentLanguage === 'bn' ? 'ত্রুটি' : 
+                         currentLanguage === 'hi' ? 'त्रुटि' :
+                         currentLanguage === 'ar' ? 'خطأ' : 'Error';
+        currentDisplay = errorText;
         updateDisplay();
         setTimeout(clearDisplay, 1500);
       }
@@ -1608,8 +2655,14 @@
     function calculatePipe() {
       const diameter = parseFloat(document.getElementById("pipeDiameter").value);
       if (isNaN(diameter) || diameter <= 0) {
-        document.getElementById("pipeResult").innerText = "0 ইঞ্চি";
-        alert("অনুগ্রহ করে একটি বৈধ ধনাত্মক সংখ্যা ইনপুট করুন");
+        document.getElementById("pipeResult").innerText = currentLanguage === 'bn' ? "0 ইঞ্চি" : 
+                                                       currentLanguage === 'hi' ? "0 इंच" :
+                                                       currentLanguage === 'ar' ? "0 بوصة" : "0 inches";
+        
+        const alertText = currentLanguage === 'bn' ? "অনুগ্রহ করে একটি বৈধ ধনাত্মক সংখ্যা ইনপুট করুন" :
+                          currentLanguage === 'hi' ? "कृपया एक वैध धनात्मक संख्या दर्ज करें" :
+                          currentLanguage === 'ar' ? "الرجاء إدخال رقم موجب صالح" : "Please enter a valid positive number";
+        alert(alertText);
         return;
       }
       
@@ -1621,23 +2674,76 @@
       const decimalPart = roundedValue - wholeInches;
       const suto = Math.round(decimalPart * 8);
       
-      // Suto names in Bengali
-      const sutoNames = {
-        0: "",
-        1: "১ সুতো",
-        2: "২ সুতো",
-        3: "৩ সুতো",
-        4: "৪ সুতো",
-        5: "৫ সুতো",
-        6: "৬ সুতো",
-        7: "৭ সুতো"
-      };
+      // Suto names
+      let sutoNames = {};
+      
+      if (currentLanguage === 'bn') {
+        sutoNames = {
+          0: "",
+          1: "১ সুতো",
+          2: "২ সুতো",
+          3: "৩ সুতো",
+          4: "৪ সুতো",
+          5: "৫ সুতো",
+          6: "৬ সুতো",
+          7: "৭ সুতো"
+        };
+      } else if (currentLanguage === 'hi') {
+        sutoNames = {
+          0: "",
+          1: "1 सुतो",
+          2: "2 सुतो",
+          3: "3 सुतो",
+          4: "4 सुतो",
+          5: "5 सुतो",
+          6: "6 सुतो",
+          7: "7 सुतो"
+        };
+      } else if (currentLanguage === 'ar') {
+        sutoNames = {
+          0: "",
+          1: "1 سوتو",
+          2: "2 سوتو",
+          3: "3 سوتو",
+          4: "4 سوتو",
+          5: "5 سوتو",
+          6: "6 سوتو",
+          7: "7 سوتو"
+        };
+      } else {
+        sutoNames = {
+          0: "",
+          1: "1 suto",
+          2: "2 suto",
+          3: "3 suto",
+          4: "4 suto",
+          5: "5 suto",
+          6: "6 suto",
+          7: "7 suto"
+        };
+      }
       
       let resultText;
       if (wholeInches > 0 && suto > 0) {
-        resultText = `${wholeInches} ইঞ্চি ${sutoNames[suto]}`;
+        if (currentLanguage === 'bn') {
+          resultText = `${wholeInches} ইঞ্চি ${sutoNames[suto]}`;
+        } else if (currentLanguage === 'hi') {
+          resultText = `${wholeInches} इंच ${sutoNames[suto]}`;
+        } else if (currentLanguage === 'ar') {
+          resultText = `${wholeInches} بوصة ${sutoNames[suto]}`;
+        } else {
+          resultText = `${wholeInches} inch ${sutoNames[suto]}`;
+        }
       } else if (wholeInches > 0) {
-        resultText = `${wholeInches} ইঞ্চি`;
+        if (currentLanguage === 'bn') {
+          resultText = `${wholeInches} ইঞ্চি`;
+        } else if (currentLanguage === 'hi') {
+          resultText = `${wholeInches} इंच`;
+        } else if (currentLanguage === 'ar') {
+          resultText = `${wholeInches} بوصة`;
+        } else {
+          resultText = `${wholeInches} inch`;
+        }
       } else {
         resultText = `${sutoNames[suto]}`;
       }
@@ -1649,7 +2755,9 @@
     function calculateMM() {
       const mm = parseFloat(document.getElementById("mmInput").value);
       if (isNaN(mm) || mm <= 0) {
-        document.getElementById("mmResult").innerText = "0 Unit";
+        document.getElementById("mmResult").innerText = currentLanguage === 'bn' ? "0 ইউনিট" : 
+                                                      currentLanguage === 'hi' ? "0 यूनिट" :
+                                                      currentLanguage === 'ar' ? "0 وحدة" : "0 Unit";
         return;
       }
       
@@ -1670,9 +2778,25 @@
       
       let resultText;
       if (points > 0) {
-        resultText = `${wholeNumber} ফুড ${points} ইঞ্চি (${roundedValue.toFixed(2)} Unit)`;
+        if (currentLanguage === 'bn') {
+          resultText = `${wholeNumber} ফুড ${points} ইঞ্চি (${roundedValue.toFixed(2)} ইউনিট)`;
+        } else if (currentLanguage === 'hi') {
+          resultText = `${wholeNumber} फुट ${points} इंच (${roundedValue.toFixed(2)} यूनिट)`;
+        } else if (currentLanguage === 'ar') {
+          resultText = `${wholeNumber} قدم ${points} بوصة (${roundedValue.toFixed(2)} وحدة)`;
+        } else {
+          resultText = `${wholeNumber} Food ${points} inch (${roundedValue.toFixed(2)} Unit)`;
+        }
       } else {
-        resultText = `${wholeNumber} (${roundedValue.toFixed(2)} Unit)`;
+        if (currentLanguage === 'bn') {
+          resultText = `${wholeNumber} (${roundedValue.toFixed(2)} ইউনিট)`;
+        } else if (currentLanguage === 'hi') {
+          resultText = `${wholeNumber} (${roundedValue.toFixed(2)} यूनिट)`;
+        } else if (currentLanguage === 'ar') {
+          resultText = `${wholeNumber} (${roundedValue.toFixed(2)} وحدة)`;
+        } else {
+          resultText = `${wholeNumber} (${roundedValue.toFixed(2)} Unit)`;
+        }
       }
       
       document.getElementById("mmResult").innerText = resultText;
@@ -1684,8 +2808,14 @@
       const count = parseFloat(document.getElementById("bagCount").value);
       
       if (isNaN(weight) || isNaN(count) || weight <= 0 || count <= 0) {
-        document.getElementById("kgResult").innerText = "0 কেজি";
-        alert("অনুগ্রহ করে বৈধ ধনাত্মক সংখ্যা ইনপুট করুন");
+        document.getElementById("kgResult").innerText = currentLanguage === 'bn' ? "0 কেজি" : 
+                                                      currentLanguage === 'hi' ? "0 किलो" :
+                                                      currentLanguage === 'ar' ? "0 كجم" : "0 kg";
+        
+        const alertText = currentLanguage === 'bn' ? "অনুগ্রহ করে বৈধ ধনাত্মক সংখ্যা ইনপুট করুন" :
+                          currentLanguage === 'hi' ? "कृपया एक वैध धनात्मक संख्या दर्ज करें" :
+                          currentLanguage === 'ar' ? "الرجاء إدخال رقم موجب صالح" : "Please enter a valid positive number";
+        alert(alertText);
         return;
       }
       
@@ -1695,11 +2825,35 @@
       
       let resultText;
       if (mons > 0 && remainingKg > 0) {
-        resultText = `${mons} মন ${remainingKg} কেজি (মোট: ${totalKg} কেজি)`;
+        if (currentLanguage === 'bn') {
+          resultText = `${mons} মন ${remainingKg} কেজি (মোট: ${totalKg} কেজি)`;
+        } else if (currentLanguage === 'hi') {
+          resultText = `${mons} मन ${remainingKg} किलो (कुल: ${totalKg} किलो)`;
+        } else if (currentLanguage === 'ar') {
+          resultText = `${mons} من ${remainingKg} كجم (المجموع: ${totalKg} كجم)`;
+        } else {
+          resultText = `${mons} Mon ${remainingKg} kg (Total: ${totalKg} kg)`;
+        }
       } else if (mons > 0) {
-        resultText = `${mons} মন (মোট: ${totalKg} কেজি)`;
+        if (currentLanguage === 'bn') {
+          resultText = `${mons} মন (মোট: ${totalKg} কেজি)`;
+        } else if (currentLanguage === 'hi') {
+          resultText = `${mons} मन (कुल: ${totalKg} किलो)`;
+        } else if (currentLanguage === 'ar') {
+          resultText = `${mons} من (المجموع: ${totalKg} كجم)`;
+        } else {
+          resultText = `${mons} Mon (Total: ${totalKg} kg)`;
+        }
       } else {
-        resultText = `${totalKg} কেজি`;
+        if (currentLanguage === 'bn') {
+          resultText = `${totalKg} কেজি`;
+        } else if (currentLanguage === 'hi') {
+          resultText = `${totalKg} किलो`;
+        } else if (currentLanguage === 'ar') {
+          resultText = `${totalKg} كجم`;
+        } else {
+          resultText = `${totalKg} kg`;
+        }
       }
       
       document.getElementById("kgResult").innerText = resultText;
@@ -1709,7 +2863,9 @@
     function calculateAge() {
       const dob = new Date(document.getElementById("birthDate").value);
       if (isNaN(dob.getTime())) {
-        document.getElementById("ageResult").innerText = "0 বছর";
+        document.getElementById("ageResult").innerText = currentLanguage === 'bn' ? "0 বছর" : 
+                                                        currentLanguage === 'hi' ? "0 साल" :
+                                                        currentLanguage === 'ar' ? "0 سنة" : "0 years";
         return;
       }
       
@@ -1735,11 +2891,35 @@
       
       let resultText;
       if (age > 1) {
-        resultText = `${age} বছর`;
+        if (currentLanguage === 'bn') {
+          resultText = `${age} বছর`;
+        } else if (currentLanguage === 'hi') {
+          resultText = `${age} साल`;
+        } else if (currentLanguage === 'ar') {
+          resultText = `${age} سنة`;
+        } else {
+          resultText = `${age} years`;
+        }
       } else if (age === 1) {
-        resultText = "1 বছর";
+        if (currentLanguage === 'bn') {
+          resultText = "1 বছর";
+        } else if (currentLanguage === 'hi') {
+          resultText = "1 साल";
+        } else if (currentLanguage === 'ar') {
+          resultText = "1 سنة";
+        } else {
+          resultText = "1 year";
+        }
       } else {
-        resultText = `${months} মাস`;
+        if (currentLanguage === 'bn') {
+          resultText = `${months} মাস`;
+        } else if (currentLanguage === 'hi') {
+          resultText = `${months} महीने`;
+        } else if (currentLanguage === 'ar') {
+          resultText = `${months} شهر`;
+        } else {
+          resultText = `${months} months`;
+        }
       }
       
       document.getElementById("ageResult").innerText = resultText;
@@ -1752,16 +2932,33 @@
       const t = parseFloat(document.getElementById("time").value);
       
       if (isNaN(p) || isNaN(r) || isNaN(t) || p <= 0 || r <= 0 || t <= 0) {
-        document.getElementById("interestResult").innerText = "ইনপুট দিন";
-        alert("অনুগ্রহ করে বৈধ ধনাত্মক সংখ্যা ইনপুট করুন");
+        document.getElementById("interestResult").innerText = currentLanguage === 'bn' ? "ইনপুট দিন" : 
+                                                            currentLanguage === 'hi' ? "इनपुट दर्ज करें" :
+                                                            currentLanguage === 'ar' ? "أدخل المدخلات" : "Enter input";
+        
+        const alertText = currentLanguage === 'bn' ? "অনুগ্রহ করে বৈধ ধনাত্মক সংখ্যা ইনপুট করুন" :
+                          currentLanguage === 'hi' ? "कृपया एक वैध धनात्मक संख्या दर्ज करें" :
+                          currentLanguage === 'ar' ? "الرجاء إدخال رقم موجب صالح" : "Please enter a valid positive number";
+        alert(alertText);
         return;
       }
       
       const interest = (p * r * t) / 100;
       const total = p + interest;
       
-      document.getElementById("interestResult").innerText = 
-        `${interest.toFixed(2)} টাকা (মোট: ${total.toFixed(2)} টাকা)`;
+      if (currentLanguage === 'bn') {
+        document.getElementById("interestResult").innerText = 
+          `${interest.toFixed(2)} টাকা (মোট: ${total.toFixed(2)} টাকা)`;
+      } else if (currentLanguage === 'hi') {
+        document.getElementById("interestResult").innerText = 
+          `${interest.toFixed(2)} टका (कुल: ${total.toFixed(2)} टका)`;
+      } else if (currentLanguage === 'ar') {
+        document.getElementById("interestResult").innerText = 
+          `${interest.toFixed(2)} تاكا (المجموع: ${total.toFixed(2)} تاكا)`;
+      } else {
+        document.getElementById("interestResult").innerText = 
+          `${interest.toFixed(2)} Taka (Total: ${total.toFixed(2)} Taka)`;
+      }
     }
     
     // Compound Interest Calculator
@@ -1772,16 +2969,33 @@
       const n = parseInt(document.getElementById("cCompound").value);
       
       if (isNaN(p) || isNaN(r) || isNaN(t) || isNaN(n) || p <= 0 || r <= 0 || t <= 0) {
-        document.getElementById("compoundResult").innerText = "ইনপুট দিন";
-        alert("অনুগ্রহ করে বৈধ ধনাত্মক সংখ্যা ইনপুট করুন");
+        document.getElementById("compoundResult").innerText = currentLanguage === 'bn' ? "ইনপুট দিন" : 
+                                                            currentLanguage === 'hi' ? "इनपुट दर्ज करें" :
+                                                            currentLanguage === 'ar' ? "أدخل المدخلات" : "Enter input";
+        
+        const alertText = currentLanguage === 'bn' ? "অনুগ্রহ করে বৈধ ধনাত্মক সংখ্যা ইনপুট করুন" :
+                          currentLanguage === 'hi' ? "कृपया एक वैध धनात्मक संख्या दर्ज करें" :
+                          currentLanguage === 'ar' ? "الرجاء إدخال رقم موجب صالح" : "Please enter a valid positive number";
+        alert(alertText);
         return;
       }
       
       const amount = p * Math.pow(1 + r/n, n*t);
       const interest = amount - p;
       
-      document.getElementById("compoundResult").innerText = 
-        `${amount.toFixed(2)} টাকা (সুদ: ${interest.toFixed(2)} টাকা)`;
+      if (currentLanguage === 'bn') {
+        document.getElementById("compoundResult").innerText = 
+          `${amount.toFixed(2)} টাকা (সুদ: ${interest.toFixed(2)} টাকা)`;
+      } else if (currentLanguage === 'hi') {
+        document.getElementById("compoundResult").innerText = 
+          `${amount.toFixed(2)} टका (ब्याज: ${interest.toFixed(2)} टका)`;
+      } else if (currentLanguage === 'ar') {
+        document.getElementById("compoundResult").innerText = 
+          `${amount.toFixed(2)} تاكا (فائدة: ${interest.toFixed(2)} تاكا)`;
+      } else {
+        document.getElementById("compoundResult").innerText = 
+          `${amount.toFixed(2)} Taka (Interest: ${interest.toFixed(2)} Taka)`;
+      }
     }
     
     // Area Conversion
@@ -1792,7 +3006,11 @@
       
       if (isNaN(value) || value <= 0) {
         document.getElementById("areaResult").innerText = "0";
-        alert("অনুগ্রহ করে বৈধ ধনাত্মক সংখ্যা ইনপুট করুন");
+        
+        const alertText = currentLanguage === 'bn' ? "অনুগ্রহ করে বৈধ ধনাত্মক সংখ্যা ইনপুট করুন" :
+                          currentLanguage === 'hi' ? "कृपया एक वैध धनात्मक संख्या दर्ज करें" :
+                          currentLanguage === 'ar' ? "الرجاء إدخال رقم موجب صالح" : "Please enter a valid positive number";
+        alert(alertText);
         return;
       }
       
@@ -1851,7 +3069,11 @@
       
       if (isNaN(value) || value <= 0) {
         document.getElementById("lengthResult").innerText = "0";
-        alert("অনুগ্রহ করে বৈধ ধনাত্মক সংখ্যা ইনপুট করুন");
+        
+        const alertText = currentLanguage === 'bn' ? "অনুগ্রহ করে বৈধ ধনাত্মক সংখ্যা ইনপুট করুন" :
+                          currentLanguage === 'hi' ? "कृपया एक वैध धनात्मक संख्या दर्ज करें" :
+                          currentLanguage === 'ar' ? "الرجاء إدخال رقم موجب صالح" : "Please enter a valid positive number";
+        alert(alertText);
         return;
       }
       
@@ -1908,6 +3130,81 @@
       document.getElementById("lengthResult").innerText = result.toFixed(4);
     }
 
+    // Modal Functions
+    function openAboutModal() {
+      document.getElementById('aboutModal').classList.add('show');
+    }
+
+    function closeAboutModal() {
+      document.getElementById('aboutModal').classList.remove('show');
+    }
+
+    function openPrivacyModal() {
+      closeAboutModal();
+      document.getElementById('privacyModal').classList.add('show');
+    }
+
+    function closePrivacyModal() {
+      document.getElementById('privacyModal').classList.remove('show');
+    }
+    
+    // Developer Modal Functions
+    function openDeveloperModal() {
+      closeMenu();
+      document.getElementById('developerModal').classList.add('show');
+    }
+    
+    function closeDeveloperModal() {
+      document.getElementById('developerModal').classList.remove('show');
+    }
+    
+    // Share Modal Functions
+    function openShareModal() {
+      closeMenu();
+      document.getElementById('shareModal').classList.add('show');
+    }
+    
+    function closeShareModal() {
+      document.getElementById('shareModal').classList.remove('show');
+    }
+    
+    function copyShareLink() {
+      const shareLink = document.getElementById('shareLink');
+      shareLink.select();
+      document.execCommand('copy');
+      
+      const copiedText = currentLanguage === 'bn' ? 'লিংক কপি হয়েছে!' : 
+                        currentLanguage === 'hi' ? 'लिंक कॉपी हो गया!' :
+                        currentLanguage === 'ar' ? 'تم نسخ الرابط!' : 'Link copied!';
+      alert(copiedText);
+    }
+    
+    function shareOnFacebook() {
+      const url = encodeURIComponent('https://apk.e-droid.net/apk/app3608658-yrtpbn.apk?v=6');
+      const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+      window.open(shareUrl, '_blank');
+    }
+    
+    function shareOnWhatsApp() {
+      const text = currentLanguage === 'bn' ? 'SmartCalculator BD অ্যাপ ডাউনলোড করুন: ' : 
+                 currentLanguage === 'hi' ? 'SmartCalculator BD ऐप डाउनलोड करें: ' :
+                 currentLanguage === 'ar' ? 'قم بتنزيل تطبيق SmartCalculator BD: ' : 
+                 'Download SmartCalculator BD app: ';
+      const url = 'https://apk.e-droid.net/apk/app3608658-yrtpbn.apk?v=6';
+      const shareUrl = `https://wa.me/?text=${encodeURIComponent(text + url)}`;
+      window.open(shareUrl, '_blank');
+    }
+    
+    function shareOnTwitter() {
+      const text = currentLanguage === 'bn' ? 'SmartCalculator BD অ্যাপ ডাউনলোড করুন: ' : 
+                 currentLanguage === 'hi' ? 'SmartCalculator BD ऐप डाउनलोड करें: ' :
+                 currentLanguage === 'ar' ? 'قم بتنزيل تطبيق SmartCalculator BD: ' : 
+                 'Download SmartCalculator BD app: ';
+      const url = 'https://apk.e-droid.net/apk/app3608658-yrtpbn.apk?v=6';
+      const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text + url)}`;
+      window.open(shareUrl, '_blank');
+    }
+
     // Service Worker Registration for PWA
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
@@ -1918,6 +3215,16 @@
         });
       });
     }
+
+    // Initialize the app
+    window.onload = function() {
+      initLanguage();
+      
+      // Set today's date as default in age calculator
+      const today = new Date();
+      const formattedDate = today.toISOString().substr(0, 10);
+      document.getElementById('birthDate').value = formattedDate;
+    };
   </script>
 </body>
 </html>
