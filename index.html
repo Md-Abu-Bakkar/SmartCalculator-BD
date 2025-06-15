@@ -37,8 +37,8 @@
     }
     
     .container {
-      max-width: 100%;
-      height: 100vh;
+      max-width: 90%;
+      height: 90vh;
       margin: 0 auto;
       padding: 0;
       display: flex;
@@ -125,12 +125,12 @@
     
     .calc-display {
       background: #f0f2f5;
-      padding: 12px;
+      padding: 15px;
       text-align: right;
-      font-size: 1.4rem;
+      font-size: 1.8rem;
       margin-bottom: 10px;
       border-radius: 8px;
-      min-height: 55px;
+      min-height: 70px;
       font-weight: 300;
       box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
       overflow: hidden;
@@ -141,14 +141,14 @@
     .calc-buttons {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 6px;
+      gap: 8px;
       flex: 1;
       min-height: 0;
     }
     
     .calc-btn {
-      padding: 8px;
-      font-size: 1rem;
+      padding: 12px;
+      font-size: 1.2rem;
       border: none;
       border-radius: 8px;
       background: #e9ecef;
@@ -180,7 +180,7 @@
     .calc-btn.function {
       background: #adb5bd;
       color: white;
-      font-size: 0.9rem;
+      font-size: 1.1rem;
     }
     
     /* Menu Styles */
@@ -488,14 +488,14 @@
     /* Responsive Design */
     @media (max-width: 480px) {
       .calc-btn {
-        padding: 6px;
-        font-size: 0.9rem;
+        padding: 10px;
+        font-size: 1.1rem;
       }
       
       .calc-display {
-        font-size: 1.2rem;
-        min-height: 45px;
-        padding: 8px;
+        font-size: 1.5rem;
+        min-height: 60px;
+        padding: 12px;
       }
       
       .mobile-calculator {
@@ -922,7 +922,7 @@
         <button class="menu-button" onclick="openMenu()">
           <i class="fas fa-bars"></i>
         </button>
-        <h2 id="appTitle">Calculator</h2>
+        <h2 id="appTitle">SmartCalculator BD</h2>
         <div class="header-actions">
           <button class="suto-toggle" id="sutoToggle" onclick="toggleSutoMode()" title="ইঞ্চি/সুতো মোড">
             <i class="fas fa-ruler"></i>
@@ -1670,8 +1670,8 @@
         <h4 id="changesTitle">Policy Changes:</h4>
         <p id="changesText">We may update this policy. Continued use of the app constitutes acceptance of the updated policy.</p>
         <h4 id="contactTitle">Contact:</h4>
-        <p id="contactText">For questions about this policy, please contact us at support@smartcalculatorbd.com</p>
-        <p id="lastUpdated">Last Updated: June 2023</p>
+        <p id="contactText">For questions about this policy, please contact us at smartcalculatorbd@gmail.com</p>
+        <p id="lastUpdated">Last Updated: June 2025</p>
       </div>
       <div class="modal-footer">
         <button class="modal-btn" onclick="closePrivacyModal()" id="closePrivacyBtn">Close</button>
@@ -1765,7 +1765,7 @@
     // Language Support
     const translations = {
       bn: {
-        appTitle: "SmartCalculator BD",
+        appTitle: "বাংলা 🌐",
         clearBtn: "C",
         backspaceBtn: "⌫",
         equalsBtn: "=",
@@ -1856,8 +1856,8 @@
         changesTitle: "নীতি পরিবর্তন:",
         changesText: "আমরা এই নীতি আপডেট করতে পারি। অ্যাপটি ব্যবহার চালিয়ে যাওয়া আপডেট করা নীতির গ্রহণযোগ্যতা গঠন করে।",
         contactTitle: "যোগাযোগ:",
-        contactText: "এই নীতি সম্পর্কে প্রশ্নের জন্য support@smartcalculatorbd.com এ আমাদের সাথে যোগাযোগ করুন",
-        lastUpdated: "সর্বশেষ আপডেট: জুন ২০২৩",
+        contactText: "এই নীতি সম্পর্কে প্রশ্নের জন্য smartcalculatorbd@gmail.com এ আমাদের সাথে যোগাযোগ করুন",
+        lastUpdated: "সর্বশেষ আপডেট: জুন ২০২৫",
         closePrivacyBtn: "বন্ধ",
         developerModalTitle: "ডেভেলপার প্রোফাইল",
         developerIntro: "SmartCalculator BD-এর ডেভেলপারের সাথে সংযোগ করুন:",
@@ -1875,7 +1875,7 @@
         closeShareBtn: "বন্ধ"
       },
       en: {
-        appTitle: "Smart BD",
+        appTitle: "English 🌐",
         clearBtn: "C",
         backspaceBtn: "⌫",
         equalsBtn: "=",
@@ -1966,8 +1966,8 @@
         changesTitle: "Policy Changes:",
         changesText: "We may update this policy. Continued use of the app constitutes acceptance of the updated policy.",
         contactTitle: "Contact:",
-        contactText: "For questions about this policy, please contact us at support@smartcalculatorbd.com",
-        lastUpdated: "Last Updated: June 2023",
+        contactText: "For questions about this policy, please contact us at smartcalculatorbd@gmail.com",
+        lastUpdated: "Last Updated: June 2025",
         closePrivacyBtn: "Close",
         developerModalTitle: "Developer Profile",
         developerIntro: "Connect with the developer of SmartCalculator BD:",
@@ -1985,7 +1985,7 @@
         closeShareBtn: "Close"
       },
       hi: {
-        appTitle: "Smart BD",
+        appTitle: "हिन्दी 🌐",
         clearBtn: "C",
         backspaceBtn: "⌫",
         equalsBtn: "=",
@@ -2076,8 +2076,8 @@
         changesTitle: "नीति परिवर्तन:",
         changesText: "हम इस नीति को अपडेट कर सकते हैं। ऐप का उपयोग जारी रखना अपडेट की गई नीति की स्वीकृति का गठन करता है।",
         contactTitle: "संपर्क:",
-        contactText: "इस नीति के बारे में प्रश्नों के लिए, कृपया हमसे support@smartcalculatorbd.com पर संपर्क करें",
-        lastUpdated: "अंतिम अद्यतन: जून 2023",
+        contactText: "इस नीति के बारे में प्रश्नों के लिए, कृपया हमसे smartcalculatorbd@gmail.com पर संपर्क करें",
+        lastUpdated: "अंतिम अद्यतन: जून 2025",
         closePrivacyBtn: "बंद करें",
         developerModalTitle: "डेवलपर प्रोफाइल",
         developerIntro: "SmartCalculator BD के डेवलपर से जुड़ें:",
@@ -2095,7 +2095,7 @@
         closeShareBtn: "बंद करें"
       },
       ar: {
-        appTitle: "Smart BD",
+        appTitle: "العربية 🌐",
         clearBtn: "C",
         backspaceBtn: "⌫",
         equalsBtn: "=",
@@ -2186,8 +2186,8 @@
         changesTitle: "تغييرات السياسة:",
         changesText: "قد نقوم بتحديث هذه السياسة. يشكل الاستمرار في استخدام التطبيق قبولًا للسياسة المحدثة.",
         contactTitle: "الاتصال:",
-        contactText: "للأسئلة حول هذه السياسة، يرجى الاتصال بنا على support@smartcalculatorbd.com",
-        lastUpdated: "آخر تحديث: يونيو 2023",
+        contactText: "للأسئلة حول هذه السياسة، يرجى الاتصال بنا على smartcalculatorbd@gmail.com",
+        lastUpdated: "آخر تحديث: يونيو 2025",
         closePrivacyBtn: "إغلاق",
         developerModalTitle: "ملف المطور",
         developerIntro: "تواصل مع مطور SmartCalculator BD:",
@@ -2392,13 +2392,7 @@
       }
     }
     
-    // Initialize suto mode
-    if (sutoMode) {
-      sutoToggle.classList.add('active');
-    }
-    updateSutoToggleTitle();
-    
-    // Function to convert decimal inches to suto format
+    // Function to convert decimal inches to suto format with fractions
     function convertToSuto(value) {
       const number = parseFloat(value);
       if (isNaN(number)) return value; // Return original if not a number
@@ -2409,87 +2403,25 @@
       // Convert decimal part to suto (1 inch = 8 suto)
       const totalSuto = Math.round(decimalPart * 8);
       const suto = totalSuto % 8;
-      const sutoFraction = totalSuto / 8;
       
-      // Special cases for fractions
-      let fractionMap = {};
+      // Special fractions for suto conversion
+      const fractionMap = {
+        1: "½",       // 0.0625 - 0.1875
+        3: "১,½",     // 0.1875 - 0.3125
+        5: "২,½",     // 0.3125 - 0.4375
+        7: "৩,½",     // 0.4375 - 0.5625
+        9: "৪,½",     // 0.5625 - 0.6875
+        11: "৫,½",    // 0.6875 - 0.8125
+        13: "৬,½",    // 0.8125 - 0.9375
+        15: "৭,½"     // 0.9375 - 1.0
+      };
       
-      if (currentLanguage === 'bn') {
-        fractionMap = {
-          0.125: "১ সুতো",
-          0.1875: "১/৫ সুতো",
-          0.25: "২ সুতো",
-          0.3125: "২/৫ সুতো",
-          0.375: "৩ সুতো",
-          0.4375: "৩/৫ সুতো",
-          0.5: "৪ সুতো",
-          0.5625: "৪/৫ সুতো",
-          0.625: "৫ সুতো",
-          0.6875: "৫/৫ সুতো",
-          0.75: "৬ সুতো",
-          0.8125: "৬/৫ সুতো",
-          0.875: "৭ সুতো",
-          0.9375: "৭/৫ সুতো"
-        };
-      } else if (currentLanguage === 'hi') {
-        fractionMap = {
-          0.125: "1 सुतो",
-          0.1875: "1/5 सुतो",
-          0.25: "2 सुतो",
-          0.3125: "2/5 सुतो",
-          0.375: "3 सुतो",
-          0.4375: "3/5 सुतो",
-          0.5: "4 सुतो",
-          0.5625: "4/5 सुतो",
-          0.625: "5 सुतो",
-          0.6875: "5/5 सुतो",
-          0.75: "6 सुतो",
-          0.8125: "6/5 सुतो",
-          0.875: "7 सुतो",
-          0.9375: "7/5 सुतो"
-        };
-      } else if (currentLanguage === 'ar') {
-        fractionMap = {
-          0.125: "1 سوتو",
-          0.1875: "1/5 سوتو",
-          0.25: "2 سوتو",
-          0.3125: "2/5 سوتو",
-          0.375: "3 سوتو",
-          0.4375: "3/5 سوتو",
-          0.5: "4 سوتو",
-          0.5625: "4/5 سوتو",
-          0.625: "5 سوتو",
-          0.6875: "5/5 سوتو",
-          0.75: "6 سوتو",
-          0.8125: "6/5 سوتو",
-          0.875: "7 سوتو",
-          0.9375: "7/5 سوتو"
-        };
-      } else {
-        fractionMap = {
-          0.125: "1 suto",
-          0.1875: "1/5 suto",
-          0.25: "2 suto",
-          0.3125: "2/5 suto",
-          0.375: "3 suto",
-          0.4375: "3/5 suto",
-          0.5: "4 suto",
-          0.5625: "4/5 suto",
-          0.625: "5 suto",
-          0.6875: "5/5 suto",
-          0.75: "6 suto",
-          0.8125: "6/5 suto",
-          0.875: "7 suto",
-          0.9375: "7/5 suto"
-        };
-      }
-      
-      // Find the closest fraction
+      // Find the closest suto fraction
       let closestFraction = "";
       let minDiff = Infinity;
       
       for (const [key, val] of Object.entries(fractionMap)) {
-        const diff = Math.abs(decimalPart - parseFloat(key));
+        const diff = Math.abs(decimalPart - (parseInt(key)/16));
         if (diff < minDiff) {
           minDiff = diff;
           closestFraction = val;
@@ -2497,19 +2429,27 @@
       }
       
       // Only use fraction if it's very close (to avoid incorrect matches)
-      if (minDiff < 0.01) {
+      if (minDiff < 0.03) {
         if (wholeInches > 0) {
           if (currentLanguage === 'bn') {
-            return `${wholeInches} ইঞ্চি ${closestFraction}`;
+            return `${wholeInches} ইঞ্চি ${closestFraction} সুতো`;
           } else if (currentLanguage === 'hi') {
-            return `${wholeInches} इंच ${closestFraction}`;
+            return `${wholeInches} इंच ${closestFraction} सुतो`;
           } else if (currentLanguage === 'ar') {
-            return `${wholeInches} بوصة ${closestFraction}`;
+            return `${wholeInches} بوصة ${closestFraction} سوتو`;
           } else {
-            return `${wholeInches} inch ${closestFraction}`;
+            return `${wholeInches} inch ${closestFraction} suto`;
           }
         } else {
-          return closestFraction;
+          if (currentLanguage === 'bn') {
+            return `${closestFraction} সুতো`;
+          } else if (currentLanguage === 'hi') {
+            return `${closestFraction} सुतो`;
+          } else if (currentLanguage === 'ar') {
+            return `${closestFraction} سوتو`;
+          } else {
+            return `${closestFraction} suto`;
+          }
         }
       }
       
@@ -3224,6 +3164,12 @@
       const today = new Date();
       const formattedDate = today.toISOString().substr(0, 10);
       document.getElementById('birthDate').value = formattedDate;
+      
+      // Initialize suto mode if enabled
+      if (sutoMode) {
+        document.getElementById('sutoToggle').classList.add('active');
+      }
+      updateSutoToggleTitle();
     };
   </script>
 </body>
