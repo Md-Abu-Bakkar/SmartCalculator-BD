@@ -1,6 +1,57 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Ad System</title>
+    <link rel="stylesheet" href="final-ad-system.css">
+</head>
+<body>
+    <!-- Your calculator content here -->
+
+    <!-- Ad System Components -->
+    <div class="ad-modal-overlay" id="adModal">
+        <div class="ad-modal-content">
+            <div class="ad-header">
+                <div class="ad-language-selector">
+                    <select id="adLanguageSelect">
+                        <option value="bn">বাংলা</option>
+                        <option value="en">English</option>
+                        <option value="hi">हिन्दी</option>
+                        <option value="ar">العربية</option>
+                    </select>
+                </div>
+                <div class="ad-guide-message">
+                    <strong>📢 Ad Count Guide</strong><br>
+                    "একটি অ্যাড গণনায় আনতে, অ্যাডটিতে ক্লিক করুন। তারপর অ্যাড পেজ থেকে ফিরে এসে 'বন্ধ করুন' বাটনে চাপ দিন। তবেই এটি ১টি অ্যাড হিসেবে গণ্য হবে। সরাসরি বন্ধ করুন বাটনে চাপ দিলে আবারও অ্যাড দেখানো হবে।"
+                </div>
+            </div>
+            <div class="ad-modal-body" id="adContainer">
+                <!-- Ad will load here -->
+            </div>
+            <div class="ad-modal-footer">
+                <button class="close-ad-btn" id="closeAdBtn">বন্ধ করুন</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="ad-notification" id="adNotification">
+        <div id="notificationContent"></div>
+        <div class="notification-buttons" id="notificationButtons">
+            <button class="btn-yes" id="btnYes">হ্যাঁ</button>
+            <button class="btn-no" id="btnNo">না</button>
+        </div>
+    </div>
+
+    <div class="ad-counter" id="adCounter">0/5</div>
+    <div class="ad-timer" id="adTimer">02:00</div>
+
+    <script src="final-ad-system.js"></script>
+</body>
+</html>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SmartCalculator BD | Professional Calculator Suite</title>
@@ -896,6 +947,187 @@
     body.dark-mode .share-section {
       background-color: #2d3748;
     }
+    /* Final Ad System Styles */
+.ad-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.95);
+    z-index: 10000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.ad-modal-content {
+    background: white;
+    width: 95%;
+    max-width: 340px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.ad-header {
+    padding: 10px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.ad-language-selector {
+    margin-bottom: 8px;
+}
+
+.ad-language-selector select {
+    width: 100%;
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    background: white;
+    font-size: 13px;
+}
+
+.ad-guide-message {
+    font-size: 12px;
+    color: #555;
+    padding: 5px;
+    background: #fff8e1;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+.ad-modal-body {
+    min-height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ad-modal-footer {
+    padding: 10px;
+    text-align: center;
+    background: #f5f5f5;
+    border-top: 1px solid #e0e0e0;
+}
+
+.close-ad-btn {
+    background: #4a6bff;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 13px;
+}
+
+.ad-notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #4CAF50;
+    color: white;
+    padding: 12px 15px;
+    border-radius: 8px;
+    max-width: 280px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    display: none;
+    z-index: 10001;
+    font-size: 13px;
+}
+
+.notification-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.btn-yes, .btn-no {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.btn-yes {
+    background: #2196F3;
+    color: white;
+}
+
+.btn-no {
+    background: #f44336;
+    color: white;
+}
+
+.ad-counter {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 15px;
+    font-size: 11px;
+    font-family: monospace;
+    z-index: 9999;
+}
+
+.ad-timer {
+    position: fixed;
+    top: 35px;
+    right: 10px;
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 15px;
+    font-size: 11px;
+    font-family: monospace;
+    z-index: 9999;
+    display: none;
+}
+
+/* RTL support for Arabic */
+[dir="rtl"] .ad-language-selector,
+[dir="rtl"] .ad-modal-footer {
+    text-align: right;
+}
+
+[dir="rtl"] .ad-guide-message {
+    text-align: right;
+}
+
+[dir="rtl"] .notification-buttons {
+    flex-direction: row-reverse;
+}
+
+/* Dark mode support */
+body.dark-mode .ad-modal-content {
+    background: #2d3748;
+}
+
+body.dark-mode .ad-header {
+    background: #4a5568;
+    border-color: #2d3748;
+}
+
+body.dark-mode .ad-language-selector select {
+    background: #2d3748;
+    color: white;
+    border-color: #4a5568;
+}
+
+body.dark-mode .ad-guide-message {
+    background: #4a5568;
+    color: #e2e8f0;
+}
+
+body.dark-mode .ad-modal-footer {
+    background: #4a5568;
+    border-color: #2d3748;
+}
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -1736,7 +1968,7 @@
         <div class="share-section">
           <h4 class="share-title" id="shareAppTitle">Share SmartCalculator BD with friends</h4>
           <div class="share-input">
-            <input type="text" id="shareLink" value="https://apk.e-droid.net/apk/app3608658-yrtpbn.apk?v=6" readonly>
+            <input type="text" id="shareLink" value="https://md-abu-bakkar.github.io/SmartCalculatorBD.apk" readonly>
             <button class="copy-link-btn" onclick="copyShareLink()" id="copyLinkBtn">Copy</button>
           </div>
           <div class="share-buttons">
@@ -3120,7 +3352,7 @@
     }
     
     function shareOnFacebook() {
-      const url = encodeURIComponent('https://apk.e-droid.net/apk/app3608658-yrtpbn.apk?v=6');
+      const url = encodeURIComponent('https://md-abu-bakkar.github.io/SmartCalculatorBD.apk');
       const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
       window.open(shareUrl, '_blank');
     }
@@ -3130,7 +3362,7 @@
                  currentLanguage === 'hi' ? 'SmartCalculator BD ऐप डाउनलोड करें: ' :
                  currentLanguage === 'ar' ? 'قم بتنزيل تطبيق SmartCalculator BD: ' : 
                  'Download SmartCalculator BD app: ';
-      const url = 'https://apk.e-droid.net/apk/app3608658-yrtpbn.apk?v=6';
+      const url = 'https://md-abu-bakkar.github.io/SmartCalculatorBD.apk';
       const shareUrl = `https://wa.me/?text=${encodeURIComponent(text + url)}`;
       window.open(shareUrl, '_blank');
     }
@@ -3140,7 +3372,7 @@
                  currentLanguage === 'hi' ? 'SmartCalculator BD ऐप डाउनलोड करें: ' :
                  currentLanguage === 'ar' ? 'قم بتنزيل تطبيق SmartCalculator BD: ' : 
                  'Download SmartCalculator BD app: ';
-      const url = 'https://apk.e-droid.net/apk/app3608658-yrtpbn.apk?v=6';
+      const url = 'https://md-abu-bakkar.github.io/SmartCalculatorBD.apk';
       const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text + url)}`;
       window.open(shareUrl, '_blank');
     }
@@ -3171,6 +3403,404 @@
       }
       updateSutoToggleTitle();
     };
+    // Final Ad System with All Features
+const adSystem = {
+    config: {
+        maxDailyAds: 5,
+        cooldown: 120, // 2 minutes in seconds
+        storageKey: 'finalAdSystem_v5',
+        adScriptKey: '03e7c2c2519ccd98f477369bfbbb04d2'
+    },
+    
+    translations: {
+        bn: {
+            firstMessage: `
+                ✅ ধন্যবাদ! আপনি আজ ৫টি অ্যাড দেখতে পারবেন<br>
+                ⏱️ প্রতি ২ মিনিট পর পর একটি করে অ্যাড দেখানো হবে<br>
+                🔕 ৫টি অ্যাড দেখার পর আজ আর কোনো অ্যাড দেখানো হবে না
+            `,
+            closeBtn: "বন্ধ করুন",
+            counter: "{count}/৫",
+            timer: "{time}",
+            notifications: {
+                adCounted: "অ্যাডটি সফলভাবে গণনা করা হয়েছে!",
+                visitRequired: "অ্যাডটি গণনা করতে অ্যাডে ক্লিক করুন",
+                dailyLimit: "আজকের জন্য অ্যাড লিমিট শেষ!",
+                noInternet: "ইন্টারনেট সংযোগ নেই! অ্যাড লোড করতে ব্যর্থ হয়েছে।"
+            },
+            buttons: {
+                yes: "হ্যাঁ",
+                no: "না",
+                adChoice: "আপনি কিভাবে অ্যাড দেখতে চান?"
+            }
+        },
+        en: {
+            firstMessage: `
+                ✅ Thank you! You can view 5 ads today<br>
+                ⏱️ Ads will show every 2 minutes<br>
+                🔕 No more ads after viewing 5 ads today
+            `,
+            closeBtn: "Close",
+            counter: "{count}/5",
+            timer: "{time}",
+            notifications: {
+                adCounted: "Ad counted successfully!",
+                visitRequired: "Please click the ad to count",
+                dailyLimit: "Daily ad limit reached!",
+                noInternet: "No internet connection! Failed to load ad."
+            },
+            buttons: {
+                yes: "Yes",
+                no: "No",
+                adChoice: "How would you like to see ads?"
+            }
+        },
+        hi: {
+            firstMessage: `
+                ✅ धन्यवाद! आप आज 5 विज्ञापन देख सकते हैं<br>
+                ⏱️ हर 2 मिनट में एक विज्ञापन दिखाया जाएगा<br>
+                🔕 5 विज्ञापन देखने के बाद आज कोई और विज्ञापन नहीं दिखाया जाएगा
+            `,
+            closeBtn: "बंद करें",
+            counter: "{count}/५",
+            timer: "{time}",
+            notifications: {
+                adCounted: "विज्ञापन सफलतापूर्वक गिना गया!",
+                visitRequired: "गिनती के लिए विज्ञापन पर क्लिक करें",
+                dailyLimit: "दैनिक विज्ञापन सीमा पूर्ण!",
+                noInternet: "इंटरनेट कनेक्शन नहीं! विज्ञापन लोड करने में विफल।"
+            },
+            buttons: {
+                yes: "हाँ",
+                no: "नहीं",
+                adChoice: "आप विज्ञापन कैसे देखना चाहते हैं?"
+            }
+        },
+        ar: {
+            firstMessage: `
+                ✅ شكرًا! يمكنك مشاهدة 5 إعلانات اليوم<br>
+                ⏱️ سيظهر إعلان كل دقيقتين<br>
+                🔕 لن يتم عرض المزيد من الإعلانات بعد مشاهدة 5 إعلانات اليوم
+            `,
+            closeBtn: "إغلاق",
+            counter: "{count}/٥",
+            timer: "{time}",
+            notifications: {
+                adCounted: "تم حساب الإعلان بنجاح!",
+                visitRequired: "الرجاء النقر على الإعلان للحساب",
+                dailyLimit: "تم الوصول إلى الحد اليومي!",
+                noInternet: "لا يوجد اتصال بالإنترنت! فشل تحميل الإعلان."
+            },
+            buttons: {
+                yes: "نعم",
+                no: "لا",
+                adChoice: "كيف تريد رؤية الإعلانات؟"
+            }
+        }
+    },
+
+    state: {
+        adCount: 0,
+        lastAdTime: null,
+        resetTime: null,
+        adClicked: false,
+        currentLanguage: 'bn',
+        firstMessageShown: false,
+        timerInterval: null,
+        sessionShown: false,
+        adMode: null, // 'auto' or 'manual'
+        offlineMode: false
+    },
+
+    init() {
+        this.loadState();
+        this.setupLanguageSelector();
+        this.setupEventListeners();
+        this.checkDailyReset();
+        this.updateUI();
+        
+        // Show first ad immediately when app opens
+        this.showFirstAd();
+    },
+
+    loadState() {
+        const saved = localStorage.getItem(this.config.storageKey);
+        if (saved) {
+            this.state = JSON.parse(saved);
+            this.state.lastAdTime = this.state.lastAdTime ? parseInt(this.state.lastAdTime) : null;
+            this.state.resetTime = this.state.resetTime ? parseInt(this.state.resetTime) : null;
+        }
+    },
+
+    saveState() {
+        localStorage.setItem(this.config.storageKey, JSON.stringify(this.state));
+    },
+
+    setupLanguageSelector() {
+        const selector = document.getElementById('adLanguageSelect');
+        selector.value = this.state.currentLanguage;
+        
+        selector.addEventListener('change', (e) => {
+            this.state.currentLanguage = e.target.value;
+            this.saveState();
+            this.updateUI();
+        });
+    },
+
+    setupEventListeners() {
+        document.getElementById('closeAdBtn').addEventListener('click', () => {
+            if (this.state.adClicked) {
+                this.registerAdView();
+            } else {
+                this.showNotification(this.translations[this.state.currentLanguage].notifications.visitRequired);
+            }
+        });
+
+        document.getElementById('btnYes').addEventListener('click', () => {
+            this.state.adMode = 'manual';
+            this.saveState();
+            document.getElementById('adNotification').style.display = 'none';
+            this.startManualAdMode();
+        });
+
+        document.getElementById('btnNo').addEventListener('click', () => {
+            this.state.adMode = 'auto';
+            this.saveState();
+            document.getElementById('adNotification').style.display = 'none';
+            this.startAutoAdMode();
+        });
+
+        // Detect when user returns from ad click
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'visible' && 
+                document.getElementById('adModal').style.display === 'flex') {
+                this.handleReturnFromAd();
+            }
+        });
+    },
+
+    showFirstAd() {
+        if (!this.state.sessionShown) {
+            this.state.sessionShown = true;
+            this.saveState();
+            this.showAd();
+        }
+    },
+
+    handleReturnFromAd() {
+        this.state.adClicked = true;
+        this.saveState();
+    },
+
+    checkDailyReset() {
+        const now = Date.now();
+        if (!this.state.resetTime || now > this.state.resetTime) {
+            this.state.adCount = 0;
+            this.state.resetTime = now + 86400000; // 24 hours
+            this.state.firstMessageShown = false;
+            this.state.sessionShown = false;
+            this.saveState();
+        }
+    },
+
+    startAutoAdMode() {
+        // Auto mode: Show ads every 2 minutes automatically
+        if (this.state.adCount < this.config.maxDailyAds) {
+            this.showAd();
+        }
+    },
+
+    startManualAdMode() {
+        // Manual mode: Show up to 5 ads with 2-minute cooldown
+        if (this.state.adCount < this.config.maxDailyAds) {
+            this.showAd();
+        }
+    },
+
+    showAd() {
+        if (this.state.adCount >= this.config.maxDailyAds) {
+            this.showNotification(this.translations[this.state.currentLanguage].notifications.dailyLimit);
+            return;
+        }
+
+        this.state.adClicked = false;
+        this.saveState();
+        
+        document.getElementById('adModal').style.display = 'flex';
+        this.loadAdScript();
+    },
+
+    loadAdScript() {
+        const adContainer = document.getElementById('adContainer');
+        adContainer.innerHTML = '';
+
+        // Check internet connection
+        if (!navigator.onLine) {
+            this.showOfflineMessage();
+            return;
+        }
+
+        const script1 = document.createElement('script');
+        script1.type = 'text/javascript';
+        script1.textContent = `
+            atOptions = {
+                'key': '${this.config.adScriptKey}',
+                'format': 'iframe',
+                'height': 250,
+                'width': 300,
+                'params': {}
+            };
+        `;
+        
+        const script2 = document.createElement('script');
+        script2.type = 'text/javascript';
+        script2.src = `https://www.highperformanceformat.com/${this.config.adScriptKey}/invoke.js`;
+        script2.onerror = () => {
+            this.showOfflineMessage();
+        };
+        
+        adContainer.appendChild(script1);
+        adContainer.appendChild(script2);
+    },
+
+    showOfflineMessage() {
+        const adContainer = document.getElementById('adContainer');
+        const lang = this.translations[this.state.currentLanguage];
+        
+        adContainer.innerHTML = `
+            <div style="padding:20px;text-align:center;">
+                ${lang.notifications.noInternet}
+            </div>
+        `;
+        
+        this.state.offlineMode = true;
+    },
+
+    registerAdView() {
+        if (this.state.offlineMode) {
+            document.getElementById('adModal').style.display = 'none';
+            this.state.offlineMode = false;
+            return;
+        }
+        
+        document.getElementById('adModal').style.display = 'none';
+        
+        this.state.adCount++;
+        this.state.lastAdTime = Date.now();
+        this.saveState();
+        
+        this.updateUI();
+        
+        if (this.state.adMode === 'manual') {
+            this.startCooldownTimer();
+        } else {
+            // In auto mode, schedule next ad after 2 minutes
+            setTimeout(() => {
+                if (this.state.adCount < this.config.maxDailyAds) {
+                    this.showAd();
+                }
+            }, this.config.cooldown * 1000);
+        }
+        
+        if (!this.state.firstMessageShown) {
+            this.showFirstMessage();
+            this.state.firstMessageShown = true;
+            this.saveState();
+        } else {
+            this.showNotification(this.translations[this.state.currentLanguage].notifications.adCounted);
+        }
+    },
+
+    startCooldownTimer() {
+        if (this.state.timerInterval) {
+            clearInterval(this.state.timerInterval);
+        }
+        
+        let remaining = this.config.cooldown;
+        this.updateTimerDisplay(remaining);
+        document.getElementById('adTimer').style.display = 'block';
+        
+        this.state.timerInterval = setInterval(() => {
+            remaining--;
+            this.updateTimerDisplay(remaining);
+            
+            if (remaining <= 0) {
+                clearInterval(this.state.timerInterval);
+                document.getElementById('adTimer').style.display = 'none';
+                
+                if (this.state.adCount < this.config.maxDailyAds) {
+                    this.showAd();
+                }
+            }
+        }, 1000);
+    },
+
+    updateTimerDisplay(seconds) {
+        const mins = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        const timeStr = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        
+        const timerText = this.translations[this.state.currentLanguage].timer.replace('{time}', timeStr);
+        document.getElementById('adTimer').textContent = timerText;
+    },
+
+    showFirstMessage() {
+        const lang = this.translations[this.state.currentLanguage];
+        const message = lang.firstMessage;
+        
+        this.showNotification(message, 0, true);
+    },
+
+    showNotification(message, duration = 3000, showButtons = false) {
+        const notification = document.getElementById('adNotification');
+        const buttons = document.getElementById('notificationButtons');
+        
+        document.getElementById('notificationContent').innerHTML = message;
+        notification.style.display = 'block';
+        
+        if (showButtons) {
+            buttons.style.display = 'flex';
+            document.getElementById('btnYes').textContent = this.translations[this.state.currentLanguage].buttons.yes;
+            document.getElementById('btnNo').textContent = this.translations[this.state.currentLanguage].buttons.no;
+        } else {
+            buttons.style.display = 'none';
+            
+            if (duration > 0) {
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                }, duration);
+            }
+        }
+    },
+
+    updateUI() {
+        const lang = this.translations[this.state.currentLanguage];
+        
+        // Update button text
+        document.getElementById('closeAdBtn').textContent = lang.closeBtn;
+        
+        // Update counter (numbers only)
+        document.getElementById('adCounter').textContent = 
+            lang.counter.replace('{count}', this.state.adCount);
+        
+        // Update guide message
+        document.querySelector('.ad-guide-message').innerHTML = 
+            `<strong>📢 ${lang.buttons.adChoice.split('<br>')[0]}</strong><br>` +
+            (lang.buttons.adChoice.split('<br>')[1] || '');
+        
+        // RTL support for Arabic
+        if (this.state.currentLanguage === 'ar') {
+            document.getElementById('adModal').setAttribute('dir', 'rtl');
+        } else {
+            document.getElementById('adModal').setAttribute('dir', 'ltr');
+        }
+    }
+};
+
+// Initialize ad system when DOM is loaded
+window.addEventListener('DOMContentLoaded', () => {
+    adSystem.init();
+});
   </script>
 </body>
 </html>
