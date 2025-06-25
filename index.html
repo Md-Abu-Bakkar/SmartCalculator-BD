@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Final Ad System</title>
+    <title>SmartCalculatorBD</title>
     <link rel="stylesheet" href="final-ad-system.css">
 </head>
 <body>
@@ -1875,7 +1875,7 @@ body.dark-mode .ad-modal-footer {
           <li>Dark/Light mode</li>
           <li>Suto/Inch mode for local measurements</li>
         </ul>
-        <h4 id="versionTitle">Version: 2.0.0</h4>
+        <h4 id="versionTitle">Version: 11.12.0 (6)</h4>
       </div>
       <div class="modal-footer">
         <button class="modal-btn" onclick="openPrivacyModal()" id="privacyBtn">Privacy Policy</button>
@@ -2076,7 +2076,7 @@ body.dark-mode .ad-modal-footer {
           "ডার্ক/লাইট মোড",
           "স্থানীয় পরিমাপের জন্য সুতো/ইঞ্চি মোড"
         ],
-        versionTitle: "সংস্করণ: 2.0.0",
+        versionTitle: "সংস্করণ: 11.12.0 (6)",
         privacyBtn: "গোপনীয়তা নীতি",
         closeAboutBtn: "বন্ধ",
         privacyTitle: "গোপনীয়তা নীতি",
@@ -2186,7 +2186,7 @@ body.dark-mode .ad-modal-footer {
           "Dark/Light mode",
           "Suto/Inch mode for local measurements"
         ],
-        versionTitle: "Version: 2.0.0",
+        versionTitle: "Version: 11.12.0 (6)",
         privacyBtn: "Privacy Policy",
         closeAboutBtn: "Close",
         privacyTitle: "Privacy Policy",
@@ -2296,7 +2296,7 @@ body.dark-mode .ad-modal-footer {
           "डार्क/लाइट मोड",
           "स्थानीय माप के लिए सुतो/इंच मोड"
         ],
-        versionTitle: "संस्करण: 2.0.0",
+        versionTitle: "संस्करण: 11.12.0 (6)",
         privacyBtn: "गोपनीयता नीति",
         closeAboutBtn: "बंद करें",
         privacyTitle: "गोपनीयता नीति",
@@ -2406,7 +2406,7 @@ body.dark-mode .ad-modal-footer {
           "وضع الظلام/الضوء",
           "وضع السوتو/البوصة للقياسات المحلية"
         ],
-        versionTitle: "الإصدار: 2.0.0",
+        versionTitle: "الإصدار: 11.12.0 (6)",
         privacyBtn: "سياسة الخصوصية",
         closeAboutBtn: "إغلاق",
         privacyTitle: "سياسة الخصوصية",
@@ -2984,10 +2984,7 @@ body.dark-mode .ad-modal-footer {
                                                       currentLanguage === 'hi' ? "0 किलो" :
                                                       currentLanguage === 'ar' ? "0 كجم" : "0 kg";
         
-        const alertText = currentLanguage === 'bn' ? "অনুগ্রহ করে বৈধ ধনাত্মক সংখ্যা ইনপুট করুন" :
-                          currentLanguage === 'hi' ? "कृपया एक वैध धनात्मक संख्या दर्ज करें" :
-                          currentLanguage === 'ar' ? "الرجاء إدخال رقم موجب صالح" : "Please enter a valid positive number";
-        alert(alertText);
+        
         return;
       }
       
@@ -3431,7 +3428,7 @@ const adSystem = {
             buttons: {
                 yes: "হ্যাঁ",
                 no: "না",
-                adChoice: "আপনি কিভাবে অ্যাড দেখতে চান?"
+                adChoice: "বিজ্ঞাপন গণনা নির্দেশিকা একটি বিজ্ঞাপন গণনা করতে, একটি নতুন পৃষ্ঠায় যেতে বিজ্ঞাপনটিতে ক্লিক করুন, তারপর ফিরে এসে বন্ধ করুন বোতাম টিপুন?"
             }
         },
         en: {
@@ -3452,7 +3449,7 @@ const adSystem = {
             buttons: {
                 yes: "Yes",
                 no: "No",
-                adChoice: "How would you like to see ads?"
+                adChoice: "Ad Count Guide To count an ad, click on the ad to go to a new page, then come back and press the Close button?"
             }
         },
         hi: {
@@ -3473,7 +3470,7 @@ const adSystem = {
             buttons: {
                 yes: "हाँ",
                 no: "नहीं",
-                adChoice: "आप विज्ञापन कैसे देखना चाहते हैं?"
+                adChoice: "विज्ञापन गणना मार्गदर्शिका किसी विज्ञापन की गणना करने के लिए, नए पृष्ठ पर जाने के लिए विज्ञापन पर क्लिक करें, फिर वापस आएं और बंद करें बटन दबाएं?"
             }
         },
         ar: {
@@ -3494,7 +3491,7 @@ const adSystem = {
             buttons: {
                 yes: "نعم",
                 no: "لا",
-                adChoice: "كيف تريد رؤية الإعلانات؟"
+                adChoice: "دليل عدد الإعلانات لحساب إعلان، انقر على الإعلان للانتقال إلى صفحة جديدة، ثم ارجع واضغط على زر الإغلاق؟"
             }
         }
     },
