@@ -1,0 +1,21 @@
+{
+  "name": "SmartCalculator BD | Professional Calculator Suite",
+  "short_name": "SmartCalculator BD",
+  "description": "Professional calculator suite with multiple tools, unit conversions, and multi-language support for Bangladesh and international users.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#f8f9fa",
+  "theme_color": "#4a6bff",
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
